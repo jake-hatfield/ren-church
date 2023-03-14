@@ -11,17 +11,17 @@ import { useTheme } from 'next-themes';
 import { Close, Menu } from '@carbon/icons-react';
 
 // lib
-import { handleClickOutside, handleKeyboardShortcut } from '@utils/click';
+import { handleClickOutside } from '@utils/click';
 import { formatDifference } from '@utils/dateTime';
 import { handlePluralization } from '@utils/string';
 
 // components
-// import Button from '$components/utilities/Button.svelte';
-// import Divider from '$components/layout/Divider.svelte';
-// import DropdownList from '$components/layout/DropdownList.svelte';
-// import DropdownPanel from '$components/layout/DropdownPanel.svelte';
-// import DropdownShell from '$components/layout/DropdownShell.svelte';
-// import Link from '$components/utilities/Link.svelte';
+import Button from '@components/utilities/Button';
+import Divider from '@components/utilities/Divider';
+// import DropdownList from '@components/layout/DropdownList';
+// import DropdownPanel from '@components/layout/DropdownPanel';
+// import DropdownShell from '@components/layout/DropdownShell';
+import Link from '@components/utilities/Link';
 import Toggle from '@components/utilities/Toggle';
 
 // icons
@@ -67,27 +67,31 @@ const Header: React.FC = () => {
 						LOGO
 					</a>
 					<div className='lg:hidden'>
-						{/* <Button
-					icon={isMobileMenuActive ? Close : Menu}
-					iconSize={28}
-					kind="ghost"
-					onClick={() => (isMobileMenuActive = !isMobileMenuActive)}
-					title="Menu"
-					type="icon"
-				/> */}
+						<Button
+							icon={isMobileMenuActive ? Close : Menu}
+							iconSize={28}
+							kind='ghost'
+							onClick={() => setIsMobileMenuActive((prev) => !prev)}
+							title='Menu'
+							type='icon'
+						>
+							{isMobileMenuActive ? <Close /> : <Menu />}
+						</Button>
 					</div>
 					<div className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-between'>
 						<nav className='flex space-x-10'>
 							<ul className='relative hidden items-center md:flex'>
 								{generalLinks.map((link, i) => (
-									<li className='ml-0.5 first:ml-0'>
-										{/* <Button
-									href={`/${link.href}`}
-									isSelected={browser && $page.url.pathname === `/${link.href}`}
-									kind="ghost"
-									selectedClasses="text-cyan-400"
-									title={link.title}
-								/> */}
+									<li className='ml-0.5 first:ml-0' key={i}>
+										<Button
+											href={`/${link.href}`}
+											// isSelected={
+											// 	browser && $page.url.pathname === `/${link.href}`
+											// }
+											kind='ghost'
+											selectedClasses='text-cyan-400'
+											title={link.title}
+										/>
 									</li>
 								))}
 								<li className='relative ml-0.5'>

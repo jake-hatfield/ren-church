@@ -25,22 +25,22 @@ const Footer = () => {
 		{
 			title: 'Facebook',
 			href: `https://twitter.com/intent/user?screen_name=${social.twitter}`,
-			icon: LogoFacebook,
+			icon: <LogoFacebook />,
 		},
 		{
 			title: 'Instagram',
 			href: `https://youtube.com/@${social.youtube}`,
-			icon: LogoInstagram,
+			icon: <LogoInstagram />,
 		},
 		{
 			title: 'Twitter',
 			href: `https://twitter.com/intent/user?screen_name=${social.twitter}`,
-			icon: LogoTwitter,
+			icon: <LogoTwitter />,
 		},
 		{
 			title: 'YouTube',
 			href: `https://youtube.com/@${social.youtube}`,
-			icon: LogoYoutube,
+			icon: <LogoYoutube />,
 		},
 	];
 	const categoryThreeLinks = [];
@@ -48,9 +48,6 @@ const Footer = () => {
 		{ title: 'Sitemap', href: '/sitemap.xml' },
 		{ title: 'RSS', href: '/rss.xml' },
 	];
-
-	const commonClassNames =
-		'link !important inline-block text-zinc-900 focus:ring-zinc-900 hover:text-zinc-800 !important underline';
 
 	return (
 		<footer
@@ -77,7 +74,7 @@ const Footer = () => {
 										type='icon'
 										tooltipAlignment={i === 0 ? 'start' : 'center'}
 									>
-										{/* {icon} */}
+										{icon}
 									</Button>
 								</li>
 							))}
@@ -89,7 +86,7 @@ const Footer = () => {
 						</address>
 					</div>
 					<div className='mt-8 md:mt-0'>
-						<p className='handwritten'>Product</p>
+						<p className='handwritten'>Category 1</p>
 						<nav>
 							<ul className='mt-3 space-y-3'>
 								{categoryOneLinks.map(({ href, isPopular, title }, i) => (
@@ -104,7 +101,7 @@ const Footer = () => {
 						</nav>
 					</div>
 					<div className='mt-8 md:mt-0'>
-						<p className='handwritten'>Resources</p>
+						<p className='handwritten'>Category 2</p>
 						<nav>
 							<ul className='mt-3 space-y-3'>
 								{categoryTwoLinks.map(({ href, isPopular, title }, i) => (
@@ -119,7 +116,7 @@ const Footer = () => {
 						</nav>
 					</div>
 					<div className='mt-8 md:mt-0'>
-						<p className='handwritten'>Company</p>
+						<p className='handwritten'>Category 3</p>
 						<nav>
 							<ul className='mt-3 space-y-3'>
 								{categoryThreeLinks.map(({ href, isPopular, title }, i) => (

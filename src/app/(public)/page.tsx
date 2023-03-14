@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 // components
 import Badge from '@components/utilities/Badge';
 import Button from '@components/utilities/Button';
+import Card from '@components/utilities/Card';
 import Divider from '@components/utilities/Divider';
 import Link from '@components/utilities/Link';
 import SearchInput from '@components/utilities/SearchInput';
@@ -53,12 +54,14 @@ const Page = () => {
 						title="IBM's Carbon design system"
 					/>
 					that I came up with when creating{' '}
-					<Link href='https://leadgeek.io' isExternal title='Leadgeek' />
+					<Link href='https://leadgeek.io' isExternal title='Leadgeek' /> v2.
+					Really, it&apos;s just set up with the technologies I enjoy using, and
+					I hope you do too.
 				</p>
 			</header>
 			<Divider classes='mt-content' />
-			<ul className='mt-content md:grid md:grid-cols-2 md:gap-12'>
-				<li>
+			<ul className='mt-content feature-grid'>
+				<li className='feature-list-item'>
 					<header>
 						<h3 className='text-3xl font-black'>Buttons</h3>
 					</header>
@@ -75,7 +78,7 @@ const Page = () => {
 						<ArrowRight />
 					</Button>
 				</li>
-				<li>
+				<li className='feature-list-item'>
 					<header>
 						<h3 className='text-3xl font-black'>Badges</h3>
 					</header>
@@ -85,13 +88,13 @@ const Page = () => {
 					<Badge kind='highlighted' title='Highlighted' />
 					<Badge kind='dark' title='Dark' />
 				</li>
-				<li>
+				<li className='feature-list-item'>
 					<header>
 						<h3 className='text-3xl font-black'>Spinner</h3>
 					</header>
 					<Spinner />
 				</li>
-				<li>
+				<li className='feature-list-item'>
 					<header>
 						<h3 className='text-3xl font-black'>Inputs</h3>
 					</header>
@@ -119,11 +122,27 @@ const Page = () => {
 						</ul>
 					</div>
 				</li>
-				<li>
+				<li className='feature-list-item'>
 					<header>
 						<h3 className='text-3xl font-black'>Toggle</h3>
 					</header>
 					<Toggle name='toggle' />
+				</li>
+				<li className='feature-list-item'>
+					<header>
+						<h3 className='text-3xl font-black'>Cards</h3>
+					</header>
+					<ul>
+						<Card title='Regular card'>
+							<p>Lorem ipsum dolor sit amet</p>
+						</Card>
+						<Card isPrimary title='Primary card'>
+							<p>Lorem ipsum dolor sit amet</p>
+						</Card>
+						<Card isExpandable title='Expandable card'>
+							<p>Lorem ipsum dolor sit amet</p>
+						</Card>
+					</ul>
 				</li>
 			</ul>
 		</section>

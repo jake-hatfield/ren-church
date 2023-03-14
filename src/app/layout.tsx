@@ -10,14 +10,12 @@ const font = Roboto({
 	variable: '--font-roboto',
 });
 
-export default function RootLayout({
-	children,
-}: {
-	children: React.ReactNode;
-}) {
+const Layout = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<html lang='en' className={font.className}>
 			<body>{children}</body>
 		</html>
 	);
-}
+};
+
+export default Layout;

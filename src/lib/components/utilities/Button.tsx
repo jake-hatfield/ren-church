@@ -11,10 +11,10 @@ import Spinner from '@components/utilities/Spinner';
 import Tooltip from '@components/utilities/Tooltip';
 
 // types
-import type { ArrowRight } from '@carbon/icons-react';
+import type { CarbonIconType } from '@carbon/icons-react';
 interface Props {
 	href?: string;
-	children?: typeof ArrowRight;
+	children?: CarbonIconType;
 	iconSize?: number;
 	isCentered?: boolean;
 	isDisabled?: boolean;

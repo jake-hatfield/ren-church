@@ -7,7 +7,7 @@ import { ThemeProvider } from 'next-themes';
 import Footer from '@lib/components/navigation/Footer';
 import Header from '@lib/components/navigation/Header';
 
-const PublicLayout = ({ children }: { children: React.ReactNode }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<ThemeProvider attribute='class'>
 			<div className='relative flex h-full min-h-screen flex-col items-start bg-white dark:bg-zinc-900'>
@@ -19,4 +19,4 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
 	);
 };
 
-export default PublicLayout;
+export default Layout;
