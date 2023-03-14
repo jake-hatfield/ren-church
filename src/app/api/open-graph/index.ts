@@ -8,11 +8,11 @@ import OpenGraphImage from '@components/seo/OpenGraphImage';
 
 // lib
 import { handleApiError } from '@utils/api';
-import IBMPlexMono from '$lib/fonts/IBMPlexMono-Bold.ttf';
-import IBMPlexSans from '$lib/fonts/IBMPlexSans-SemiBold.ttf';
-import PermanentMarker from '$lib/fonts/PermanentMarker-Regular.ttf';
+// import IBMPlexMono from '$lib/fonts/IBMPlexMono-Bold.ttf';
+// import IBMPlexSans from '$lib/fonts/IBMPlexSans-SemiBold.ttf';
+// import PermanentMarker from '$lib/fonts/PermanentMarker-Regular.ttf';
 
-export const GET: RequestHandler = async ({ url }) => {
+export const GET = async ({ url }) => {
 	try {
 		const description = url.searchParams.get('description');
 		// square, rect, or rectAlt
@@ -39,9 +39,9 @@ export const GET: RequestHandler = async ({ url }) => {
 
 		const svg = await satori(element, {
 			fonts: [
-				{ name: 'IBM Plex Mono', data: Buffer.from(IBMPlexMono) },
-				{ name: 'IBM Plex Sans', data: Buffer.from(IBMPlexSans) },
-				{ name: 'Permanent Marker', data: Buffer.from(PermanentMarker) },
+				// { name: 'IBM Plex Mono', data: Buffer.from(IBMPlexMono) },
+				// { name: 'IBM Plex Sans', data: Buffer.from(IBMPlexSans) },
+				// { name: 'Permanent Marker', data: Buffer.from(PermanentMarker) },
 			],
 			width,
 			height,

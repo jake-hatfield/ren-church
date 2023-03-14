@@ -2,7 +2,6 @@
 import Button from '@components/utilities/Button';
 
 // types
-import type { CarbonIconType } from '@carbon/icons-react';
 import type { Dispatch, SetStateAction } from 'react';
 interface Props {
 	items: { href: string; icon: React.ReactNode | null; title: string }[];

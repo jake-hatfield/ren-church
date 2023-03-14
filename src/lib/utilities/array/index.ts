@@ -18,13 +18,6 @@ const isMatch = (string: string, query: string) => {
 	return false;
 };
 
-export const removeDuplicatesByKey = <T extends { [key: string]: unknown }>(
-	items: T[],
-	key: string
-): T[] => {
-	return [...new Map(items.map((item: T) => [item[key], item])).values()];
-};
-
 export const searchArray = (
 	items: any[],
 	query: string,

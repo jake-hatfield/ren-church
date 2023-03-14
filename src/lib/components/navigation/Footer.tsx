@@ -1,5 +1,4 @@
 // components
-import Badge from '@components/utilities/Badge';
 import Button from '@components/utilities/Button';
 import Link from '@components/utilities/Link';
 
@@ -14,39 +13,42 @@ import {
 // lib
 import metadata from '@lib/metadata';
 
+// types
+import type { Link as LinkType, LinkWithIcon } from 'src/@types/Link';
+
 const Footer = () => {
 	// destructure
 	const { address, social } = metadata;
 
 	// state
-	const categoryOneLinks = [];
-	const categoryTwoLinks = [];
-	const socialLinks = [
+	const categoryOneLinks: LinkType[] = [];
+	const categoryTwoLinks: LinkType[] = [];
+	const socialLinks: LinkWithIcon[] = [
 		{
-			title: 'Facebook',
 			href: `https://twitter.com/intent/user?screen_name=${social.twitter}`,
 			icon: <LogoFacebook />,
+			title: 'Facebook',
 		},
 		{
-			title: 'Instagram',
 			href: `https://youtube.com/@${social.youtube}`,
 			icon: <LogoInstagram />,
+			title: 'Instagram',
 		},
 		{
-			title: 'Twitter',
 			href: `https://twitter.com/intent/user?screen_name=${social.twitter}`,
 			icon: <LogoTwitter />,
+			title: 'Twitter',
 		},
 		{
-			title: 'YouTube',
 			href: `https://youtube.com/@${social.youtube}`,
 			icon: <LogoYoutube />,
+			title: 'YouTube',
 		},
 	];
-	const categoryThreeLinks = [];
-	const miscLinks = [
-		{ title: 'Sitemap', href: '/sitemap.xml' },
-		{ title: 'RSS', href: '/rss.xml' },
+	const categoryThreeLinks: LinkType[] = [];
+	const miscLinks: LinkType[] = [
+		{ href: '/sitemap.xml', title: 'Sitemap' },
+		{ href: '/rss.xml', title: 'RSS' },
 	];
 
 	return (
@@ -88,12 +90,9 @@ const Footer = () => {
 						<p className='handwritten'>Category 1</p>
 						<nav>
 							<ul className='mt-3 space-y-3'>
-								{categoryOneLinks.map(({ href, isPopular, title }, i) => (
+								{categoryOneLinks.map(({ href, title }, i) => (
 									<li className='flex items-start' key={i}>
 										<Link href={href} title={title} />
-										{isPopular && (
-											<Badge classes='ml-1.5' kind='ghost' title='Popular' />
-										)}
 									</li>
 								))}
 							</ul>
@@ -103,12 +102,9 @@ const Footer = () => {
 						<p className='handwritten'>Category 2</p>
 						<nav>
 							<ul className='mt-3 space-y-3'>
-								{categoryTwoLinks.map(({ href, isPopular, title }, i) => (
+								{categoryTwoLinks.map(({ href, title }, i) => (
 									<li className='flex items-start' key={i}>
 										<Link href={href} title={title} />
-										{isPopular && (
-											<Badge classes='ml-1.5' kind='ghost' title='Popular' />
-										)}
 									</li>
 								))}
 							</ul>
@@ -118,12 +114,9 @@ const Footer = () => {
 						<p className='handwritten'>Category 3</p>
 						<nav>
 							<ul className='mt-3 space-y-3'>
-								{categoryThreeLinks.map(({ href, isPopular, title }, i) => (
+								{categoryThreeLinks.map(({ href, title }, i) => (
 									<li className='flex items-start' key={i}>
 										<Link href={href} title={title} />
-										{isPopular && (
-											<Badge classes='ml-1.5' kind='ghost' title='Popular' />
-										)}
 									</li>
 								))}
 							</ul>

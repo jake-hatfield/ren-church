@@ -8,14 +8,6 @@ export const convertIsoToTimestamp = (iso: string) => {
 	return DateTime.fromISO(iso).toMillis();
 };
 
-export const convertKeepaTime = (keepaTime: number) => {
-	return (keepaTime + 21564000) * 60;
-};
-
-export const convertKeepaTimeToIso = (keepaTime: number) => {
-	return convertTimestampToIso(convertKeepaTime(keepaTime));
-};
-
 export const convertTimestampToIso = (timestamp: number) => {
 	return new Date(timestamp * 1000).toISOString();
 };

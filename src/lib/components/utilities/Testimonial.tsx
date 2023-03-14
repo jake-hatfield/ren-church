@@ -1,11 +1,9 @@
 // icons
 import { Quotes } from '@carbon/icons-react';
 
-// types
-import type { ReactNode } from 'react';
 interface Props {
 	author: string;
-	children: ReactNode;
+	children: React.ReactNode;
 }
 
 const Testimonial: React.FC<Props> = ({ author, children }) => {

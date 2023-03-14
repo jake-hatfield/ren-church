@@ -33,14 +33,7 @@ import Link from '@components/utilities/Link';
 import Toggle from '@components/utilities/Toggle';
 
 // types
-interface Link {
-	href: string;
-	title: string;
-}
-
-interface LinkWithIcon extends Link {
-	icon: React.ReactNode;
-}
+import type { Link as LinkType, LinkWithIcon } from '$types/Link';
 
 const Header: React.FC = () => {
 	// theme
@@ -55,7 +48,7 @@ const Header: React.FC = () => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	// state data
-	const generalLinks: Link[] = [{ href: '/about', title: 'About' }];
+	const generalLinks: LinkType[] = [{ href: '/about', title: 'About' }];
 	const resourceLinks: LinkWithIcon[] = [
 		{ href: '/blog', icon: <Blog />, title: 'Blog' },
 	];

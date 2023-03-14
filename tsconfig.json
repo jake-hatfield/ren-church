@@ -26,7 +26,7 @@
 			"@lib/*": ["src/lib/*"],
 			"@routes/*": ["src/routes/*"],
 			"@styles/*": ["src/lib/styles/*"],
-			"@types/*": ["src/types/*"],
+			"$types/*": ["src/@types/*"],
 			"@utils/*": ["src/lib/utilities/*"]
 		}
 	},

@@ -5,18 +5,16 @@ import sgHelpers from '@sendgrid/helpers';
 
 // lib
 import { handlePluralization } from '@utils/string';
+import metadata from '@lib/metadata';
 
 // types
 import type { PersonalizationData } from '@sendgrid/helpers/classes/personalization';
 
-// env
-import { SENDGRID_KEY } from '$env/static/private';
+mail.setApiKey(process.env.SENDGRID_KEY);
+client.setApiKey(process.env.SENDGRID_KEY);
 
-mail.setApiKey(SENDGRID_KEY);
-client.setApiKey(SENDGRID_KEY);
-
-const transactionalEmail = 'support@leadgeek.io';
-const promotionalEmail = 'news@leadgeek.io';
+const transactionalEmail = metadata.email;
+const promotionalEmail = metadata.email;
 
 export const createOrUpdateEmailContacts = async (
 	contacts: {
@@ -122,7 +120,7 @@ export const sendEmail = async (
 		const res = await mail.send({
 			from: {
 				email: fromEmail ?? transactionalEmail,
-				name: 'Leadgeek',
+				name: metadata.siteTitle,
 			},
 			replyTo: replyToEmail ?? transactionalEmail,
 			personalizations: [

@@ -1,4 +1,3 @@
-// lib
 const metadata = {
 	address: {
 		line1: '123 Some Address',

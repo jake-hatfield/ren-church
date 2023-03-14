@@ -12,7 +12,7 @@ export const trackNewMember = () => {
 export const getOs = () => {
 	if (typeof window === undefined) return null;
 
-	const userAgent = navigator.userAgent;
+	const { userAgent } = window.navigator;
 
 	if (userAgent.search('Windows') !== -1) return 'windows';
 	else if (userAgent.search('Mac') !== -1) return 'macOs';
