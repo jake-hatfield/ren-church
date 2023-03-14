@@ -32,14 +32,13 @@ const Modal: React.FC<Props> = ({
 					</header>
 					{/* <!-- close button --> */}
 					<Button
+						icon={<Close />}
 						kind='ghost'
 						onClick={handleClose}
 						title='Close'
 						tooltipAlignment='end'
 						type='icon'
-					>
-						<Close />
-					</Button>
+					/>
 				</div>
 				<div className='minimal-scrollbar max-h-96 break-words px-3 text-white md:px-5'>
 					<slot name='description' />

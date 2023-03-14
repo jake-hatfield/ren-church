@@ -44,7 +44,7 @@ const TextArea: React.FC<Props> = ({
 			{label && (
 				<label
 					htmlFor={id}
-					className={`block font-medium text-zinc-300 ${
+					className={`block font-medium text-zinc-500 dark:text-zinc-300 ${
 						isLabelHidden ? 'sr-only' : ''
 					} ${isReadOnly ? 'cursor-not-allowed text-zinc-500' : 'cursor-text'}`}
 				>
@@ -81,13 +81,16 @@ const TextArea: React.FC<Props> = ({
 						This field is read-only
 					</p>
 				) : helperText ? (
-					<p className='text-zinc-300' id={`${id}-helper-text`}>
+					<p
+						className='text-zinc-500 dark:text-zinc-300'
+						id={`${id}-helper-text`}
+					>
 						{helperText}
 					</p>
 				) : (
 					<></>
 				)}
-				<span className='mt-1.5 inline-block text-zinc-300'>
+				<span className='mt-1.5 inline-block text-zinc-500 dark:text-zinc-300'>
 					{handlePluralization(
 						'character',
 						characterLimit - characterCount,

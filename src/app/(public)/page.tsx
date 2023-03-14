@@ -65,18 +65,10 @@ const Page = () => {
 					<header>
 						<h3 className='text-3xl font-black'>Buttons</h3>
 					</header>
-					<Button title='Primary'>
-						<ArrowRight />
-					</Button>
-					<Button kind='secondary' title='Secondary'>
-						<ArrowRight />
-					</Button>
-					<Button kind='tertiary' title='Tertiary'>
-						<ArrowRight />
-					</Button>
-					<Button kind='ghost' title='Ghost'>
-						<ArrowRight />
-					</Button>
+					<Button icon={<ArrowRight />} title='Primary' />
+					<Button icon={<ArrowRight />} kind='secondary' title='Secondary' />
+					<Button icon={<ArrowRight />} kind='tertiary' title='Tertiary' />
+					<Button icon={<ArrowRight />} kind='ghost' title='Ghost' />
 				</li>
 				<li className='feature-list-item'>
 					<header>
@@ -86,7 +78,7 @@ const Page = () => {
 					<Badge kind='info' title='Info' />
 					<Badge kind='error' title='Error' />
 					<Badge kind='highlighted' title='Highlighted' />
-					<Badge kind='dark' title='Dark' />
+					<Badge kind='ghost' title='Ghost' />
 				</li>
 				<li className='feature-list-item'>
 					<header>

@@ -52,7 +52,7 @@ const Footer = () => {
 	return (
 		<footer
 			aria-label='footer'
-			className='mt-auto w-full border-t-2 border-zinc-200 bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-900'
+			className='mt-auto w-full border-t-2 border-zinc-200 dark:border-zinc-700 dark:bg-zinc-900'
 		>
 			<div className='pt-content pb-content mx-auto max-w-7xl px-3 md:px-5'>
 				<div className='md:grid md:grid-cols-5 md:gap-1.5 lg:gap-5'>
@@ -69,13 +69,12 @@ const Footer = () => {
 								<li className='ml-0.5 first:ml-0' key={i}>
 									<Button
 										href={href}
-										kind='secondary'
+										icon={icon}
+										kind='ghost'
 										title={title}
 										type='icon'
 										tooltipAlignment={i === 0 ? 'start' : 'center'}
-									>
-										{icon}
-									</Button>
+									/>
 								</li>
 							))}
 						</ul>
@@ -93,7 +92,7 @@ const Footer = () => {
 									<li className='flex items-start' key={i}>
 										<Link href={href} title={title} />
 										{isPopular && (
-											<Badge classes='ml-1.5' kind='dark' title='Popular' />
+											<Badge classes='ml-1.5' kind='ghost' title='Popular' />
 										)}
 									</li>
 								))}
@@ -108,7 +107,7 @@ const Footer = () => {
 									<li className='flex items-start' key={i}>
 										<Link href={href} title={title} />
 										{isPopular && (
-											<Badge classes='ml-1.5' kind='dark' title='Popular' />
+											<Badge classes='ml-1.5' kind='ghost' title='Popular' />
 										)}
 									</li>
 								))}
@@ -123,7 +122,7 @@ const Footer = () => {
 									<li className='flex items-start' key={i}>
 										<Link href={href} title={title} />
 										{isPopular && (
-											<Badge classes='ml-1.5' kind='dark' title='Popular' />
+											<Badge classes='ml-1.5' kind='ghost' title='Popular' />
 										)}
 									</li>
 								))}

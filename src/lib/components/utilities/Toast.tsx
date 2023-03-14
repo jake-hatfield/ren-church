@@ -61,15 +61,14 @@ const Toast: React.FC<Props> = ({
 				</div>
 				<div className='flex w-1/5 justify-end'>
 					<Button
+						icon={<Close />}
 						kind='ghost'
 						// onClick={() => toastStore.deleteNotification(id)}
 						size='sm'
 						title='Close'
 						tooltipAlignment='end'
 						type='icon'
-					>
-						<Close />
-					</Button>
+					/>
 				</div>
 			</li>
 		</>

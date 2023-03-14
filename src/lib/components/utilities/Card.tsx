@@ -47,15 +47,14 @@ const Card: React.FC<Props> = ({
 				</h3>
 				{isExpandable && (
 					<Button
-						className='ml-3'
+						classes='ml-3'
+						icon={isExpanded ? <Subtract /> : <Add />}
 						kind='ghost'
 						onClick={() => setIsExpanded((prev) => !prev)}
 						title={isExpanded ? 'Collapse' : 'Expand'}
 						tooltipAlignment='end'
 						type='icon'
-					>
-						{isExpanded ? <Subtract /> : <Add />}
-					</Button>
+					/>
 				)}
 			</header>
 			{(!isExpandable || isExpanded) && (

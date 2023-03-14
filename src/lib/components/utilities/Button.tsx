@@ -14,8 +14,8 @@ import Tooltip from '@components/utilities/Tooltip';
 import type { CarbonIconType } from '@carbon/icons-react';
 interface Props {
 	href?: string;
-	children?: CarbonIconType;
-	iconSize?: number;
+	icon?: React.ReactNode;
+	classes?: string;
 	isCentered?: boolean;
 	isDisabled?: boolean;
 	isFullWidth?: boolean;
@@ -38,8 +38,8 @@ const Button: React.FC<Props> = (props) => {
 	// props
 	const {
 		href = '',
-		children,
-		iconSize = 18,
+		icon,
+		classes,
 		isCentered = false,
 		isDisabled = false,
 		isFullWidth = false,
@@ -90,10 +90,10 @@ const Button: React.FC<Props> = (props) => {
 		kind === 'primary'
 			? 'bg-rose-600 dark:bg-rose-500 dark:hover:bg-rose-600 text-white hover:bg-rose-700'
 			: kind === 'secondary'
-			? 'bg-cyan-400 text-zinc-900 hover:bg-cyan-500'
+			? 'bg-cyan-500 hover:bg-cyan-600 dark:bg-cyan-400 text-white dark:text-zinc-900 dark:hover:bg-cyan-500'
 			: kind === 'tertiary'
 			? 'bg-zinc-700 text-white hover:bg-zinc-600'
-			: 'hover:bg-zinc-800 hover:text-cyan-400'
+			: 'bg-transparent hover:text-cyan-600 hover:bg-zinc-100 dark:hover:bg-zinc-800 dark:hover:text-cyan-400'
 	} ring-1 ring-transparent ring-inset focus:outline-none focus:ring-white transition-colors duration-150`;
 
 	return (
@@ -116,24 +116,26 @@ const Button: React.FC<Props> = (props) => {
 						isInactive
 							? 'cursor-not-allowed bg-zinc-800 text-zinc-500'
 							: commonStyleClasses
-					} ${isSelected && !isInactive ? selectedClasses : ''}`}
+					} ${isSelected && !isInactive ? selectedClasses : ''} ${
+						classes ? classes : ''
+					}`}
 				>
 					<Link href={href}>
-						<>
+						<div>
 							{type !== 'icon' && (
-								<>
+								<span>
 									{isLoading && <Spinner />}
 									<span
 										className={`whitespace-nowrap ${
 											isLoading ? 'ml-1.5 md:ml-2' : ''
-										} ${children ? 'mr-1.5' : ''}`}
+										} ${icon ? 'mr-1.5' : ''}`}
 									>
 										{title}
 									</span>
-								</>
+								</span>
 							)}
-							{children && children}
-						</>
+							{icon && icon}
+						</div>
 					</Link>
 				</div>
 			) : (
@@ -155,7 +157,9 @@ const Button: React.FC<Props> = (props) => {
 						isInactive
 							? 'cursor-not-allowed bg-zinc-800 text-zinc-500'
 							: commonStyleClasses
-					} ${isSelected && !isInactive ? selectedClasses : ''}`}
+					} ${isSelected && !isInactive ? selectedClasses : ''} ${
+						classes ? classes : ''
+					}`}
 					disabled={isInactive}
 				>
 					<>
@@ -165,13 +169,13 @@ const Button: React.FC<Props> = (props) => {
 								<span
 									className={`whitespace-nowrap ${
 										isLoading ? 'ml-1.5 md:ml-2' : ''
-									} ${children ? 'mr-1.5' : ''}`}
+									} ${icon ? 'mr-1.5' : ''}`}
 								>
 									{title}
 								</span>
 							</>
 						)}
-						{children && children}
+						{icon && icon}
 					</>
 				</button>
 			)}

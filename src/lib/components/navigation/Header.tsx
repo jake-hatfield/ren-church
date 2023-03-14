@@ -8,24 +8,39 @@ import { DateTime } from 'luxon';
 import { useTheme } from 'next-themes';
 
 // icons
-import { Close, Menu } from '@carbon/icons-react';
+import {
+	ArrowRight,
+	AsleepFilled,
+	Blog,
+	ChevronDown,
+	ChevronUp,
+	Close,
+	LightFilled,
+	Menu,
+} from '@carbon/icons-react';
 
 // lib
-import { handleClickOutside } from '@utils/click';
 import { formatDifference } from '@utils/dateTime';
 import { handlePluralization } from '@utils/string';
 
 // components
 import Button from '@components/utilities/Button';
 import Divider from '@components/utilities/Divider';
-// import DropdownList from '@components/layout/DropdownList';
+import DropdownList from '@components/layout/DropdownList';
 // import DropdownPanel from '@components/layout/DropdownPanel';
-// import DropdownShell from '@components/layout/DropdownShell';
+import DropdownShell from '@components/layout/DropdownShell';
 import Link from '@components/utilities/Link';
 import Toggle from '@components/utilities/Toggle';
 
-// icons
-import { ArrowRight } from '@carbon/icons-react';
+// types
+interface Link {
+	href: string;
+	title: string;
+}
+
+interface LinkWithIcon extends Link {
+	icon: React.ReactNode;
+}
 
 const Header: React.FC = () => {
 	// theme
@@ -40,9 +55,11 @@ const Header: React.FC = () => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	// state data
-	const generalLinks = [];
-	const resourceLinks = [];
-	const settingsLinks = [];
+	const generalLinks: Link[] = [{ href: '/about', title: 'About' }];
+	const resourceLinks: LinkWithIcon[] = [
+		{ href: '/blog', icon: <Blog />, title: 'Blog' },
+	];
+	const settingsLinks: LinkWithIcon[] = [];
 
 	// functions
 	const closeMobileMenu = () => {
@@ -60,7 +77,7 @@ const Header: React.FC = () => {
 
 	return (
 		<div className='sticky top-0 z-40 w-full backdrop-blur-sm'>
-			<div className='absolute h-full w-full border-b-2 border-zinc-200 bg-zinc-100 opacity-90 dark:border-zinc-700 dark:bg-zinc-900' />
+			<div className='absolute h-full w-full border-b-2 border-zinc-200 opacity-90 dark:border-zinc-700 dark:bg-zinc-900' />
 			<header aria-label='header' className='relative mx-auto w-full max-w-7xl'>
 				<div className='flex items-center justify-between p-3 lg:justify-start lg:space-x-10 lg:px-5'>
 					<a aria-label='Home' href='/' className='inline-block'>
@@ -68,56 +85,56 @@ const Header: React.FC = () => {
 					</a>
 					<div className='lg:hidden'>
 						<Button
-							icon={isMobileMenuActive ? Close : Menu}
-							iconSize={28}
+							icon={isMobileMenuActive ? <Close /> : <Menu />}
 							kind='ghost'
 							onClick={() => setIsMobileMenuActive((prev) => !prev)}
 							title='Menu'
 							type='icon'
-						>
-							{isMobileMenuActive ? <Close /> : <Menu />}
-						</Button>
+						/>
 					</div>
 					<div className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-between'>
 						<nav className='flex space-x-10'>
 							<ul className='relative hidden items-center md:flex'>
-								{generalLinks.map((link, i) => (
+								{generalLinks.map(({ href, title }, i) => (
 									<li className='ml-0.5 first:ml-0' key={i}>
 										<Button
-											href={`/${link.href}`}
+											href={href}
 											// isSelected={
 											// 	browser && $page.url.pathname === `/${link.href}`
 											// }
 											kind='ghost'
 											selectedClasses='text-cyan-400'
-											title={link.title}
+											title={title}
 										/>
 									</li>
 								))}
 								<li className='relative ml-0.5'>
-									{/* <Button
-								icon={isResourcesMenuActive ? ChevronUp : ChevronDown}
-								clickOutside={{
-									enabled: isResourcesMenuActive,
-									cb: () => (isResourcesMenuActive = !isResourcesMenuActive),
-								}}
-								kind="ghost"
-								onClick={() => (isResourcesMenuActive = !isResourcesMenuActive)}
-								title="Resources"
-							/> */}
-									{/* {#if isResourcesMenuActive}
-								<DropdownShell className="w-56" position="left">
-									<DropdownList bind:isActive={isResourcesMenuActive} items={resourceLinks} />
-								</DropdownShell>
-							{/if} */}
+									<Button
+										icon={
+											isResourceMenuActive ? <ChevronUp /> : <ChevronDown />
+										}
+										kind='ghost'
+										onClick={() => setIsResourceMenuActive((prev) => !prev)}
+										title='Resources'
+									/>
+									{isResourceMenuActive && (
+										<DropdownShell position='left'>
+											<DropdownList
+												items={resourceLinks}
+												setIsActive={setIsResourceMenuActive}
+											/>
+										</DropdownShell>
+									)}
 								</li>
 							</ul>
 						</nav>
-
 						<ul className='flex items-center space-x-0.5'>
 							{isMounted && (
 								<li>
 									<Toggle
+										defaultIsChecked={theme === 'dark'}
+										itemLeft={<LightFilled />}
+										itemRight={<AsleepFilled />}
 										name='theme'
 										onChange={() =>
 											setTheme(theme === 'dark' ? 'light' : 'dark')
@@ -125,21 +142,16 @@ const Header: React.FC = () => {
 									/>
 								</li>
 							)}
-
 							<li>
-								{/* <Button
+								<Button
+									classes='ml-3'
 									href='/sign-in'
-									icon={ArrowRight}
-									kind='ghost'
+									icon={<ArrowRight />}
 									title='Sign in'
-								/> */}
+								/>
 							</li>
 							<li>
-								{/* <Button
-									href='/sign-up'
-									icon={ArrowRight}
-									title='Request an invite'
-								/> */}
+								<Button href='/sign-up' icon={<ArrowRight />} title='Sign up' />
 							</li>
 						</ul>
 					</div>
