@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 // types
 interface Props {
+	classes?: string;
 	error?: boolean;
 	defaultIsChecked?: boolean;
 	isLoading?: boolean;
@@ -14,7 +15,8 @@ interface Props {
 	onChange?: () => void;
 }
 
-const Tooltip: React.FC<Props> = ({
+const Toggle: React.FC<Props> = ({
+	classes,
 	error = false,
 	defaultIsChecked = false,
 	isLoading = false,
@@ -29,7 +31,9 @@ const Tooltip: React.FC<Props> = ({
 	return (
 		<label
 			htmlFor={name}
-			className='flex w-fit cursor-pointer items-center font-semibold text-zinc-500 dark:text-zinc-300'
+			className={`flex w-fit cursor-pointer items-center font-semibold text-zinc-500 dark:text-zinc-300 ${
+				classes ? classes : ''
+			}`}
 			data-testid={`toggle-${name}`}
 		>
 			{itemLeft && itemLeft}
@@ -39,15 +43,15 @@ const Tooltip: React.FC<Props> = ({
 				}`}
 			>
 				<input
+					className='sr-only'
+					checked={isChecked}
 					disabled={isLoading}
 					id={name}
-					type='checkbox'
-					checked={isChecked}
 					onChange={() => {
 						setIsChecked(!isChecked);
 						onChange && onChange();
 					}}
-					className='sr-only'
+					type='checkbox'
 				/>
 				<div
 					className={`block h-6 w-12 rounded-full border-2 shadow-sm transition-colors group-hover:shadow ${
@@ -73,4 +77,4 @@ const Tooltip: React.FC<Props> = ({
 	);
 };
 
-export default Tooltip;
+export default Toggle;

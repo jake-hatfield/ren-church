@@ -3,6 +3,9 @@
 // react
 import { useEffect, useState } from 'react';
 
+// next
+import { usePathname } from 'next/navigation';
+
 // packages
 import { DateTime } from 'luxon';
 import { useTheme } from 'next-themes';
@@ -30,6 +33,7 @@ import DropdownList from '@components/layout/DropdownList';
 // import DropdownPanel from '@components/layout/DropdownPanel';
 import DropdownShell from '@components/layout/DropdownShell';
 import Link from '@components/utilities/Link';
+import Logo from '@assets/images/vectors/Logo';
 import Toggle from '@components/utilities/Toggle';
 
 // types
@@ -38,6 +42,9 @@ import type { Link as LinkType, LinkWithIcon } from '$types/Link';
 const Header: React.FC = () => {
 	// theme
 	const { theme, setTheme } = useTheme();
+
+	// next
+	const pathname = usePathname();
 
 	// state
 	const [isFavoritesActive, setIsFavoritesActive] = useState(false);
@@ -48,7 +55,10 @@ const Header: React.FC = () => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	// state data
-	const generalLinks: LinkType[] = [{ href: '/about', title: 'About' }];
+	const generalLinks: LinkType[] = [
+		{ href: '/', title: 'Home' },
+		{ href: '/about', title: 'About' },
+	];
 	const resourceLinks: LinkWithIcon[] = [
 		{ href: '/blog', icon: <Blog />, title: 'Blog' },
 	];
@@ -70,11 +80,15 @@ const Header: React.FC = () => {
 
 	return (
 		<div className='sticky top-0 z-40 w-full backdrop-blur-sm'>
-			<div className='absolute h-full w-full border-b-2 border-zinc-200 opacity-90 dark:border-zinc-700 dark:bg-zinc-900' />
+			<div
+				className={`absolute h-full w-full border-b-2 border-zinc-200 ${
+					isMounted && theme === 'dark' ? 'opacity-90' : 'opacity-10'
+				} dark:border-zinc-700 dark:bg-zinc-900`}
+			/>
 			<header aria-label='header' className='relative mx-auto w-full max-w-7xl'>
 				<div className='flex items-center justify-between p-3 lg:justify-start lg:space-x-10 lg:px-5'>
 					<a aria-label='Home' href='/' className='inline-block'>
-						LOGO
+						<Logo />
 					</a>
 					<div className='lg:hidden'>
 						<Button
@@ -92,9 +106,7 @@ const Header: React.FC = () => {
 									<li className='ml-0.5 first:ml-0' key={i}>
 										<Button
 											href={href}
-											// isSelected={
-											// 	browser && $page.url.pathname === `/${link.href}`
-											// }
+											isSelected={pathname === href}
 											kind='ghost'
 											selectedClasses='text-cyan-400'
 											title={title}
@@ -111,7 +123,7 @@ const Header: React.FC = () => {
 										title='Resources'
 									/>
 									{isResourceMenuActive && (
-										<DropdownShell position='left'>
+										<DropdownShell classes='w-48' position='left'>
 											<DropdownList
 												items={resourceLinks}
 												setIsActive={setIsResourceMenuActive}
@@ -140,6 +152,7 @@ const Header: React.FC = () => {
 									classes='ml-3'
 									href='/sign-in'
 									icon={<ArrowRight />}
+									kind='ghost'
 									title='Sign in'
 								/>
 							</li>
@@ -149,96 +162,38 @@ const Header: React.FC = () => {
 						</ul>
 					</div>
 				</div>
-				{/* {#if isMobileMenuActive}
-			<nav
-				className="shadow-stack absolute inset-x-3 z-40 mt-3 border-2 border-zinc-700 bg-zinc-900 py-5 md:inset-auto md:right-5 md:w-96 lg:hidden"
-			>
-				<ul>
-					<li>
-						<ul className="grid grid-flow-row grid-cols-2 gap-3 px-3">
-							{#each generalLinks as link}
-								<li>
-									<Link
-										href={`/${link.href}`}
-										isUnderlined
-										onClick={closeMobileMenu}
-										title={link.title}
-									/>
-								</li>
-							{/each}
-						</ul>
-					</li>
-					<li className="mt-3 border-t-2 border-zinc-700 pt-3">
-						<ul className="grid grid-flow-row grid-cols-2 gap-3 px-3">
-							{#each resourceLinks as link}
-								<li>
-									<Link
-										href={`/${link.href}`}
-										isUnderlined
-										onClick={closeMobileMenu}
-										title={link.title}
-									/>
-								</li>
-							{/each}
-						</ul>
-					</li>
-					{#if $page.data.profile && $page.data.profile.approved && $page.data.profile.status !== 0}
-						<li className="mt-3 border-t-2 border-zinc-700 pt-3">
-							<ul className="grid grid-flow-row grid-cols-2 gap-3 px-3">
-								{#each settingsLinks as link}
-									<li>
-										<Link
-											href={`/${link.href}`}
-											isUnderlined
-											onClick={closeMobileMenu}
-											title={link.title}
-										/>
-									</li>
-								{/each}
-							</ul>
-						</li>
-					{/if}
-					<li className="mt-5 border-t-2 border-zinc-700 px-3 pt-3">
+				{isMobileMenuActive && (
+					<nav className='shadow-stack absolute inset-x-3 z-40 mt-3 border-2 border-zinc-700 bg-zinc-900 py-5 md:inset-auto md:right-5 md:w-96 lg:hidden'>
 						<ul>
-							{#if $page.data.profile}
-								<li className="w-full">
-									<Button
-										icon={Logout}
-										isCentered
-										isFullWidth
-										kind="tertiary"
-										onClick={handleSignOut}
-										spaceIconBetween
-										title="Sign out"
-									/>
-								</li>
-							{:else}
-								<li>
-									<Button
-										href="/sign-in"
-										icon={ArrowRight}
-										isFullWidth
-										kind="tertiary"
-										onClick={closeMobileMenu}
-										title="Sign in"
-									/>
-								</li>
-								<li className="mt-1.5">
-									<Button
-										className="ml-0.5"
-										href="/sign-up"
-										icon={ArrowRight}
-										isFullWidth
-										onClick={closeMobileMenu}
-										title="Request an invite"
-									/>
-								</li>
-							{/if}
+							<li>
+								<ul className='grid grid-flow-row grid-cols-2 gap-3 px-3'>
+									{generalLinks.map((link, i) => (
+										<li key={i}>
+											<Link
+												href={`/${link.href}`}
+												onClick={closeMobileMenu}
+												title={link.title}
+											/>
+										</li>
+									))}
+								</ul>
+							</li>
+							<li className='mt-3 border-t-2 border-zinc-700 pt-3'>
+								<ul className='grid grid-flow-row grid-cols-2 gap-3 px-3'>
+									{resourceLinks.map((link, i) => (
+										<li key={i}>
+											<Link
+												href={`/${link.href}`}
+												onClick={closeMobileMenu}
+												title={link.title}
+											/>
+										</li>
+									))}
+								</ul>
+							</li>
 						</ul>
-					</li>
-				</ul>
-			</nav>
-		{/if} */}
+					</nav>
+				)}
 			</header>
 		</div>
 	);

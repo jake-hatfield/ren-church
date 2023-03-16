@@ -6,7 +6,12 @@ import { useEffect, useState } from 'react';
 // packages
 import { useTheme } from 'next-themes';
 
-const Spinner: React.FC = () => {
+// types
+interface Props {
+	classes?: string;
+}
+
+const Spinner: React.FC<Props> = ({ classes }) => {
 	// theme
 	const { theme } = useTheme();
 
@@ -21,6 +26,7 @@ const Spinner: React.FC = () => {
 
 	return (
 		<svg
+			className={classes}
 			width='18'
 			height='18'
 			viewBox='0 0 38 38'

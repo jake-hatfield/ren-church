@@ -11,7 +11,6 @@ import Spinner from '@components/utilities/Spinner';
 import Tooltip from '@components/utilities/Tooltip';
 
 // types
-import type { CarbonIconType } from '@carbon/icons-react';
 interface Props {
 	href?: string;
 	icon?: React.ReactNode;
@@ -43,7 +42,7 @@ const Button: React.FC<Props> = (props) => {
 		isCentered = false,
 		isDisabled = false,
 		isFullWidth = false,
-		isLoading,
+		isLoading = false,
 		isSelected = false,
 		kind = 'primary',
 		onClick = () => {},
@@ -92,14 +91,14 @@ const Button: React.FC<Props> = (props) => {
 			: kind === 'secondary'
 			? 'bg-cyan-500 hover:bg-cyan-600 dark:bg-cyan-400 text-white dark:text-zinc-900 dark:hover:bg-cyan-500'
 			: kind === 'tertiary'
-			? 'bg-zinc-700 text-white hover:bg-zinc-600'
+			? 'bg-zinc-200 text-zinc-900 hover:bg-zinc-300 dark:bg-zinc-700 dark:text-white dark:hover:bg-zinc-600'
 			: 'bg-transparent hover:text-cyan-600 hover:bg-zinc-100 dark:hover:bg-zinc-800 dark:hover:text-cyan-400'
-	} ring-1 ring-transparent ring-inset focus:outline-none focus:ring-white transition-colors duration-150`;
+	} ring-1 ring-transparent ring-inset focus:outline-none focus:ring-zinc-300 dark:focus:ring-white transition-colors duration-150`;
 
 	return (
 		<div className='relative inline'>
 			{href ? (
-				<div
+				<Link
 					onMouseEnter={() => {
 						setIsTooltipActive(true);
 						onMouseEnter();
@@ -119,25 +118,22 @@ const Button: React.FC<Props> = (props) => {
 					} ${isSelected && !isInactive ? selectedClasses : ''} ${
 						classes ? classes : ''
 					}`}
+					href={href}
 				>
-					<Link href={href}>
-						<div>
-							{type !== 'icon' && (
-								<span>
-									{isLoading && <Spinner />}
-									<span
-										className={`whitespace-nowrap ${
-											isLoading ? 'ml-1.5 md:ml-2' : ''
-										} ${icon ? 'mr-1.5' : ''}`}
-									>
-										{title}
-									</span>
-								</span>
-							)}
-							{icon && icon}
-						</div>
-					</Link>
-				</div>
+					{type !== 'icon' && (
+						<span>
+							{isLoading && <Spinner />}
+							<span
+								className={`whitespace-nowrap ${
+									isLoading ? 'ml-1.5 md:ml-2' : ''
+								} ${icon ? 'mr-1.5' : ''}`}
+							>
+								{title}
+							</span>
+						</span>
+					)}
+					{icon && icon}
+				</Link>
 			) : (
 				<button
 					aria-label={type === 'icon' ? title : ''}
@@ -155,7 +151,7 @@ const Button: React.FC<Props> = (props) => {
 					}}
 					className={`${commonLayoutClasses} ${commonTypographyClasses} ${
 						isInactive
-							? 'cursor-not-allowed bg-zinc-800 text-zinc-500'
+							? 'cursor-not-allowed bg-zinc-200 text-zinc-500 dark:bg-zinc-800'
 							: commonStyleClasses
 					} ${isSelected && !isInactive ? selectedClasses : ''} ${
 						classes ? classes : ''

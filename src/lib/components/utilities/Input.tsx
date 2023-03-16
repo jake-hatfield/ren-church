@@ -1,7 +1,7 @@
 'use client';
 
 // react
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 // packages
 import { callingCountries, countries } from 'country-data';
@@ -70,7 +70,6 @@ interface Props {
 const Input: React.FC<Props> = ({
 	button,
 	classes,
-	defaultSelectedCountry = null,
 	defaultType,
 	error,
 	hasInlineButton = false,
@@ -93,65 +92,48 @@ const Input: React.FC<Props> = ({
 	// state
 	const [isCountryActive, setIsCountryActive] = useState(false);
 	const [preferredCountries] = useState([countries.US]);
-	const [selectedCountry, setSelectedCountry] = useState(
-		defaultSelectedCountry
-	);
+	const [selectedCountry, setSelectedCountry] = useState(preferredCountries[0]);
 	const [showPasswordText, setShowPasswordText] = useState(false);
 	const [type, setType] = useState(defaultType);
 
 	// error handling logic
-	if (type === 'tel' && !selectedCountry)
-		throw new Error('Selected country must be included');
-
 	if (type === 'number' && !min && !max)
 		throw new Error('Min and max values must be included');
 
 	// functions
-	const handleChange = (e: any) => {
-		onChange && onChange(e);
-	};
-
 	const handleInput = (e: any) => {
 		const target = e.target as HTMLInputElement;
 
-		if (!validateInput(target)) return;
-
 		// update the value
 		setValue(target.value);
+
 		onInput && onInput(e);
 	};
 
-	const validateInput = (target: HTMLInputElement) => {
-		if (type === 'number' && !validateNumberInput(target)) return false;
+	const validateNumberInput = useCallback(
+		(value: string) => {
+			if (+value <= min) return setValue(min.toString());
 
-		return true;
-	};
+			if (+value >= max) return setValue(max.toString());
+		},
+		[max, min, setValue]
+	);
 
-	const validateNumberInput = (target: HTMLInputElement) => {
-		if (+target.value < min) {
-			const minToString = min.toString();
-			target.value = minToString;
-			setValue(minToString);
-			return false;
-		}
+	const validateInput = useCallback(
+		(value: string) => {
+			if (type === 'number') return validateNumberInput(value);
+		},
+		[type, validateNumberInput]
+	);
 
-		if (+target.value > max) {
-			const maxToString = max.toString();
-			target.value = maxToString;
-			setValue(maxToString);
-			return false;
-		}
+	useEffect(() => {
+		if (!value) return;
 
-		return true;
-	};
-
-	const toggleShowPasswordText = () => {
-		setShowPasswordText((prev) => !prev);
-		setType(showPasswordText ? 'text' : 'password');
-	};
+		validateInput(value);
+	}, [type, validateInput, value]);
 
 	return (
-		<div>
+		<div className={classes}>
 			{label && (
 				<label
 					htmlFor={id}
@@ -160,7 +142,7 @@ const Input: React.FC<Props> = ({
 					}`}
 				>
 					{label}
-					{isRequired ? '*' : ''}
+					{isRequired ? ' *' : ''}
 				</label>
 			)}
 			<div className={`${label ? 'mt-1.5' : ''} relative flex`}>
@@ -176,25 +158,27 @@ const Input: React.FC<Props> = ({
 							}
 						/>
 						{isCountryActive && (
-							<ol className='minimal-scrollbar absolute top-12 z-40 h-72 overflow-y-auto border-2 border-t-4 border-zinc-700 bg-zinc-900'>
-								<li className='border-b-2 border-zinc-700'>
+							<ol className='minimal-scrollbar absolute top-12 z-40 h-72 overflow-y-auto border-2 border-t-4 border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-900'>
+								<li className='border-b-2 border-zinc-200 dark:border-zinc-700'>
 									<ol>
 										{preferredCountries.map((country, i) => (
 											<li key={i}>
 												<button
-													className='flex w-full items-center justify-between py-2.5 px-3 hover:bg-zinc-800'
+													className='flex w-full items-start justify-between py-2.5 pl-3 pr-5 hover:bg-zinc-100 dark:hover:bg-zinc-800'
 													onClick={() => {
 														setSelectedCountry(country);
 														setIsCountryActive(false);
 													}}
 												>
-													<span>
+													<span className='flex items-start'>
 														<span className='inline-block w-8 text-sm'>
 															{country.emoji || country.alpha2}
 														</span>
-														<span className='ml-3'>{country.name}</span>
+														<span className='ml-3 text-left text-sm'>
+															{country.name}
+														</span>
 													</span>
-													<span className='text-zinc-300'>
+													<span className='ml-3 min-w-fit text-zinc-700 dark:text-zinc-300'>
 														{country.countryCallingCodes[0]}
 													</span>
 												</button>
@@ -205,19 +189,25 @@ const Input: React.FC<Props> = ({
 								{callingCountries.all.map((country, i) => (
 									<li key={i}>
 										<button
-											className='flex w-full items-center justify-between py-2.5 px-3 hover:bg-zinc-800'
+											className='flex w-full items-start justify-between py-2.5 pl-3 pr-5 hover:bg-zinc-100 dark:hover:bg-zinc-800'
 											onClick={() => {
 												setSelectedCountry(country);
 												setIsCountryActive(false);
 											}}
 										>
-											<span>
-												<span className='inline-block w-8 text-sm'>
+											<span className='flex items-start'>
+												<span
+													className={`inline-block w-8 ${
+														country.emoji ? 'text-base' : 'text-xs'
+													}`}
+												>
 													{country.emoji || country.alpha2}
 												</span>
-												<span className='ml-3'>{country.name}</span>
+												<span className='ml-3 text-left text-sm'>
+													{country.name}
+												</span>
 											</span>
-											<span className='text-zinc-300'>
+											<span className='ml-3 min-w-fit text-zinc-700 dark:text-zinc-300'>
 												{country.countryCallingCodes[0]}
 											</span>
 										</button>
@@ -231,26 +221,24 @@ const Input: React.FC<Props> = ({
 					hasIncrementDecrement && (
 						<div
 							className={`absolute ${
-								error ? 'right-10' : 'right-0'
-							} top-1 flex items-center`}
+								error ? 'right-10' : 'right-0.5'
+							} top-1.5 flex items-center`}
 						>
 							<Button
 								icon={<Subtract />}
-								isDisabled={+value <= min}
 								kind='ghost'
 								onClick={() => setValue((+value - 1).toString())}
 								size='sm'
-								title='Subtract'
+								title='Decrement'
 								type='icon'
 							/>
 							<Button
 								classes='ml-0.5'
 								icon={<Add />}
-								isDisabled={+value >= max}
 								kind='ghost'
 								onClick={() => setValue((+value + 1).toString())}
 								size='sm'
-								title='Add'
+								title='Increment'
 								tooltipAlignment='end'
 								type='icon'
 							/>
@@ -258,24 +246,24 @@ const Input: React.FC<Props> = ({
 					)
 				)}
 				{units && (
-					<span className='flex w-10 flex-none items-center justify-center bg-zinc-700 px-3 pt-[8px] pb-[7px]'>
+					<span className='mr-0.5 flex w-10 flex-none items-center justify-center bg-zinc-200 px-3 pt-[8px] pb-[7px] text-sm font-semibold dark:bg-zinc-700'>
 						{units}
 					</span>
 				)}
 				<input
-					className={`block w-full border-b-2 bg-zinc-800 py-1.5 pr-3 pl-3 md:py-2 ${
+					className={`block w-full border-b-2 bg-zinc-100 py-1.5 pr-3 pl-3 dark:bg-zinc-800 md:py-2 ${
 						type === 'number' && !hasIncrementDecrement ? '' : 'md:pr-10'
 					} ${
 						error
-							? 'placeholder:red-300 border-red-300 text-red-400 focus:border-red-500 focus:ring-red-500'
+							? 'placeholder:red-300 border-red-300 text-red-400 focus:border-red-500'
 							: isReadOnly
 							? 'cursor-not-allowed border-zinc-700 text-zinc-500'
-							: 'cursor-text border-zinc-700 text-zinc-300 focus:border-white focus:ring-white'
-					} mono placeholder:zinc-500 placeholder:text-xs focus:outline-none sm:text-sm md:placeholder:text-sm`}
+							: 'cursor-text border-zinc-300 text-zinc-800 focus:border-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:focus:border-white'
+					} placeholder:zinc-500 placeholder:text-xs focus:outline-none focus:ring-0 sm:text-sm md:placeholder:text-sm`}
 					disabled={isReadOnly}
 					id={id}
-					onChange={(e) => handleChange(e)}
-					onInput={(e) => handleInput(e)}
+					onChange={(e) => handleInput(e)}
+					// onInput={(e) => handleInput(e)}
 					min={type === 'number' ? min : ''}
 					max={type === 'number' ? max : ''}
 					name={id}
@@ -293,19 +281,20 @@ const Input: React.FC<Props> = ({
 					<button
 						onClick={(e) => {
 							e.preventDefault();
-							toggleShowPasswordText();
+							setShowPasswordText((prev) => !prev);
+							setType((prev) => (prev === 'password' ? 'text' : 'password'));
 						}}
 						className={`absolute inset-y-0 ${
 							error ? 'right-10' : 'right-2.5'
-						} text-zinc-300 transition duration-150`}
-						data-testId={
+						} text-zinc-500 transition duration-150`}
+						data-testid={
 							showPasswordText ? 'hide-password-text' : 'show-password-text'
 						}
 					>
 						{showPasswordText ? (
-							<ViewOffFilled size={24} />
+							<ViewOffFilled size={20} />
 						) : (
-							<ViewFilled size={24} />
+							<ViewFilled size={20} />
 						)}
 					</button>
 				)}
@@ -322,7 +311,10 @@ const Input: React.FC<Props> = ({
 							This field is not editable
 						</p>
 					) : helperText ? (
-						<p className='text-zinc-300' id={`${id}-helper-text`}>
+						<p
+							className='text-zinc-500 dark:text-zinc-300'
+							id={`${id}-helper-text`}
+						>
 							{helperText}
 						</p>
 					) : (

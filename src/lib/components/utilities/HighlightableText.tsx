@@ -7,11 +7,12 @@ import highlightWords from 'highlight-words';
 
 // types
 interface Props {
+	classes?: string;
 	text: string;
 	query: string;
 }
 
-const HighlightableText: React.FC<Props> = ({ text, query }) => {
+const HighlightableText: React.FC<Props> = ({ classes, text, query }) => {
 	// state
 	const [chunks, setChunks] = useState(
 		highlightWords({ text, query, matchExactly: true })
@@ -22,7 +23,7 @@ const HighlightableText: React.FC<Props> = ({ text, query }) => {
 	}, [text, query]);
 
 	return (
-		<span>
+		<span className={classes ? classes : ''}>
 			{chunks.map(({ text, match, key }) => (
 				<span className={match ? 'highlight' : ''} key={key}>
 					{text}

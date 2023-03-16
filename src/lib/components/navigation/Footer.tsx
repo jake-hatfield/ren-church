@@ -1,6 +1,7 @@
 // components
 import Button from '@components/utilities/Button';
 import Link from '@components/utilities/Link';
+import Logo from '@assets/images/vectors/Logo';
 
 // icons
 import {
@@ -21,8 +22,76 @@ const Footer = () => {
 	const { address, social } = metadata;
 
 	// state
-	const categoryOneLinks: LinkType[] = [];
-	const categoryTwoLinks: LinkType[] = [];
+	const categoryOneLinks: LinkType[] = [
+		{
+			href: '#',
+			title: 'Link 1',
+		},
+		{
+			href: '#',
+			title: 'Link 2',
+		},
+		{
+			href: '#',
+			title: 'Link 3',
+		},
+		{
+			href: '#',
+			title: 'Link 4',
+		},
+		{
+			href: '#',
+			title: 'Link 5',
+		},
+	];
+	const categoryTwoLinks: LinkType[] = [
+		{
+			href: '#',
+			title: 'Link 1',
+		},
+		{
+			href: '#',
+			title: 'Link 2',
+		},
+		{
+			href: '#',
+			title: 'Link 3',
+		},
+		{
+			href: '#',
+			title: 'Link 4',
+		},
+		{
+			href: '#',
+			title: 'Link 5',
+		},
+	];
+	const categoryThreeLinks: LinkType[] = [
+		{
+			href: '#',
+			title: 'Link 1',
+		},
+		{
+			href: '#',
+			title: 'Link 2',
+		},
+		{
+			href: '#',
+			title: 'Link 3',
+		},
+		{
+			href: '#',
+			title: 'Link 4',
+		},
+		{
+			href: '#',
+			title: 'Link 5',
+		},
+	];
+	const miscLinks: LinkType[] = [
+		{ href: '/sitemap.xml', title: 'Sitemap' },
+		{ href: '/rss.xml', title: 'RSS' },
+	];
 	const socialLinks: LinkWithIcon[] = [
 		{
 			href: `https://twitter.com/intent/user?screen_name=${social.twitter}`,
@@ -45,11 +114,6 @@ const Footer = () => {
 			title: 'YouTube',
 		},
 	];
-	const categoryThreeLinks: LinkType[] = [];
-	const miscLinks: LinkType[] = [
-		{ href: '/sitemap.xml', title: 'Sitemap' },
-		{ href: '/rss.xml', title: 'RSS' },
-	];
 
 	return (
 		<footer
@@ -64,7 +128,7 @@ const Footer = () => {
 							href='/'
 							className='inline-block focus:ring-zinc-900 focus:dark:ring-white'
 						>
-							LOGO
+							<Logo />
 						</a>
 						<ul className='mt-3 flex items-center'>
 							{socialLinks.map(({ href, icon, title }, i) => (
@@ -87,7 +151,9 @@ const Footer = () => {
 						</address>
 					</div>
 					<div className='mt-8 md:mt-0'>
-						<p className='handwritten'>Category 1</p>
+						<p className='content-uppercase text-sm text-zinc-600 dark:text-zinc-400'>
+							Category 1
+						</p>
 						<nav>
 							<ul className='mt-3 space-y-3'>
 								{categoryOneLinks.map(({ href, title }, i) => (
@@ -99,7 +165,9 @@ const Footer = () => {
 						</nav>
 					</div>
 					<div className='mt-8 md:mt-0'>
-						<p className='handwritten'>Category 2</p>
+						<p className='content-uppercase text-sm text-zinc-600 dark:text-zinc-400'>
+							Category 2
+						</p>
 						<nav>
 							<ul className='mt-3 space-y-3'>
 								{categoryTwoLinks.map(({ href, title }, i) => (
@@ -111,7 +179,9 @@ const Footer = () => {
 						</nav>
 					</div>
 					<div className='mt-8 md:mt-0'>
-						<p className='handwritten'>Category 3</p>
+						<p className='content-uppercase text-sm text-zinc-600 dark:text-zinc-400'>
+							Category 3
+						</p>
 						<nav>
 							<ul className='mt-3 space-y-3'>
 								{categoryThreeLinks.map(({ href, title }, i) => (

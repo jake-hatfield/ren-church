@@ -51,7 +51,7 @@ const SearchInput: React.FC<Props> = ({
 				<Search className='flex-none text-zinc-500' size={20} />
 			</span>
 			<input
-				className='mono block w-full cursor-text border-b-2 border-zinc-200 bg-zinc-100 py-2 pl-10 pr-2 text-zinc-800 outline-none ring-inset placeholder:text-xs placeholder:text-zinc-500 focus:border-zinc-200 focus:outline-none focus:ring-zinc-900 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:focus:border-white dark:focus:ring-white sm:text-sm md:pr-10 md:placeholder:text-sm'
+				className='mono block w-full cursor-text border-b-2 border-zinc-200 bg-zinc-100 py-2 pl-10 pr-2 text-zinc-800 outline-none placeholder:text-xs placeholder:text-zinc-500 focus:border-zinc-900 focus:outline-none focus:ring-0 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 dark:focus:border-white sm:text-sm md:pr-10 md:placeholder:text-sm'
 				data-testid='search-input'
 				onChange={(e) => setQuery(e.target.value)}
 				placeholder={placeholder}

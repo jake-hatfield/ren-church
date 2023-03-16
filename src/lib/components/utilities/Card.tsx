@@ -12,6 +12,7 @@ import { Add, Subtract } from '@carbon/icons-react';
 // types
 interface Props {
 	children: React.ReactNode;
+	classes?: string;
 	isExpandable?: boolean;
 	isPrimary?: boolean;
 	title: string;
@@ -19,6 +20,7 @@ interface Props {
 
 const Card: React.FC<Props> = ({
 	children,
+	classes,
 	isExpandable = false,
 	isPrimary = false,
 	title,
@@ -31,7 +33,9 @@ const Card: React.FC<Props> = ({
 				isPrimary
 					? 'card-shadow-primary border-cyan-500'
 					: 'card-shadow border-zinc-200 dark:border-zinc-700'
-			} transform list-none border-2 border-t-4 bg-white p-3 dark:bg-zinc-900 md:p-5`}
+			} transform list-none border-2 border-t-4 bg-white p-3 dark:bg-zinc-900 md:p-5 ${
+				classes ? classes : ''
+			}`}
 		>
 			<header
 				className={
