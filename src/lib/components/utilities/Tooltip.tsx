@@ -31,9 +31,9 @@ const Tooltip: React.FC<Props> = ({
 						: size === 'sm'
 						? 'top-10'
 						: 'top-14'
-				} z-10 bg-zinc-200 py-1.5 px-3 text-sm dark:bg-zinc-800`}
+				} z-10 bg-neutral-200 px-3 py-1.5 text-sm dark:bg-neutral-800`}
 			>
-				<div className='relative text-zinc-200 dark:text-zinc-800'>
+				<div className='relative text-neutral-200 dark:text-neutral-800'>
 					<svg
 						aria-hidden='true'
 						xmlns='http://www.w3.org/2000/svg'
@@ -57,7 +57,7 @@ const Tooltip: React.FC<Props> = ({
 					</svg>
 				</div>
 
-				<span className='whitespace-nowrap text-zinc-900 dark:text-white'>
+				<span className='whitespace-nowrap text-neutral-900 dark:text-white'>
 					{title}
 				</span>
 			</span>

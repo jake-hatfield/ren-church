@@ -67,7 +67,8 @@ const Page = () => {
 			<header>
 				<h1 className='headline-primary'>Ren Church</h1>
 			</header>
-			<h2 className='header-font'>Title test</h2>
+			<h2 className='headline-secondary'>Title test</h2>
+			<h3 className='headline-tertiary'>Title test again</h3>
 			<p>Hello, world!</p>
 		</section>
 	);

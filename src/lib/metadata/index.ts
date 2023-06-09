@@ -1,22 +1,21 @@
 const metadata = {
 	address: {
-		line1: '123 Some Address',
-		line2: 'Some City, USA',
+		line1: '907 Main St.',
+		line2: 'Richmond, Texas 77469',
 	},
-	author: 'Author Name',
+	author: 'Renaissance Church',
 	createdAt: '',
 	description: '',
-	email: '',
+	email: 'contact@ren-church.org',
 	ogLanguage: 'en_US',
 	siteLanguage: 'en',
-	siteTitle: 'Placeholder, Inc.',
-	siteShortTitle: 'Placeholder',
-	siteUrl: 'https://placeholderinc.com',
+	siteTitle: 'Renaissance Church',
+	siteShortTitle: 'Renaissance',
+	siteUrl: 'https://ren-church.org',
 	social: {
-		facebook: '',
-		instagram: '',
-		twitter: '',
-		youtube: '',
+		facebook: 'https://www.facebook.com/renaissancerichmondtx',
+		instagram: 'https://www.instagram.com/renaissance.church',
+		youtube: 'https://www.youtube.com/channel/UCWtFDTFtLuudvq1ehQG4zhg',
 	},
 };
 

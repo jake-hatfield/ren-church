@@ -137,8 +137,8 @@ const Input: React.FC<Props> = ({
 			{label && (
 				<label
 					htmlFor={id}
-					className={`block font-medium text-zinc-700 dark:text-zinc-300 ${
-						isReadOnly ? 'cursor-not-allowed text-zinc-500' : 'cursor-text'
+					className={`block font-medium text-neutral-700 dark:text-neutral-300 ${
+						isReadOnly ? 'cursor-not-allowed text-neutral-500' : 'cursor-text'
 					}`}
 				>
 					{label}
@@ -158,13 +158,13 @@ const Input: React.FC<Props> = ({
 							}
 						/>
 						{isCountryActive && (
-							<ol className='minimal-scrollbar absolute top-12 z-40 h-72 overflow-y-auto border-2 border-t-4 border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-900'>
-								<li className='border-b-2 border-zinc-200 dark:border-zinc-700'>
+							<ol className='minimal-scrollbar absolute top-12 z-40 h-72 overflow-y-auto border-2 border-t-4 border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900'>
+								<li className='border-b-2 border-neutral-200 dark:border-neutral-700'>
 									<ol>
 										{preferredCountries.map((country, i) => (
 											<li key={i}>
 												<button
-													className='flex w-full items-start justify-between py-2.5 pl-3 pr-5 hover:bg-zinc-100 dark:hover:bg-zinc-800'
+													className='flex w-full items-start justify-between py-2.5 pl-3 pr-5 hover:bg-neutral-100 dark:hover:bg-neutral-800'
 													onClick={() => {
 														setSelectedCountry(country);
 														setIsCountryActive(false);
@@ -178,7 +178,7 @@ const Input: React.FC<Props> = ({
 															{country.name}
 														</span>
 													</span>
-													<span className='ml-3 min-w-fit text-zinc-700 dark:text-zinc-300'>
+													<span className='ml-3 min-w-fit text-neutral-700 dark:text-neutral-300'>
 														{country.countryCallingCodes[0]}
 													</span>
 												</button>
@@ -189,7 +189,7 @@ const Input: React.FC<Props> = ({
 								{callingCountries.all.map((country, i) => (
 									<li key={i}>
 										<button
-											className='flex w-full items-start justify-between py-2.5 pl-3 pr-5 hover:bg-zinc-100 dark:hover:bg-zinc-800'
+											className='flex w-full items-start justify-between py-2.5 pl-3 pr-5 hover:bg-neutral-100 dark:hover:bg-neutral-800'
 											onClick={() => {
 												setSelectedCountry(country);
 												setIsCountryActive(false);
@@ -207,7 +207,7 @@ const Input: React.FC<Props> = ({
 													{country.name}
 												</span>
 											</span>
-											<span className='ml-3 min-w-fit text-zinc-700 dark:text-zinc-300'>
+											<span className='ml-3 min-w-fit text-neutral-700 dark:text-neutral-300'>
 												{country.countryCallingCodes[0]}
 											</span>
 										</button>
@@ -246,20 +246,20 @@ const Input: React.FC<Props> = ({
 					)
 				)}
 				{units && (
-					<span className='mr-0.5 flex w-10 flex-none items-center justify-center bg-zinc-200 px-3 pt-[8px] pb-[7px] text-sm font-semibold dark:bg-zinc-700'>
+					<span className='mr-0.5 flex w-10 flex-none items-center justify-center bg-neutral-200 px-3 pb-[7px] pt-[8px] text-sm font-semibold dark:bg-neutral-700'>
 						{units}
 					</span>
 				)}
 				<input
-					className={`block w-full border-b-2 bg-zinc-100 py-1.5 pr-3 pl-3 dark:bg-zinc-800 md:py-2 ${
+					className={`block w-full border-b-2 bg-neutral-100 py-1.5 pl-3 pr-3 dark:bg-neutral-800 md:py-2 ${
 						type === 'number' && !hasIncrementDecrement ? '' : 'md:pr-10'
 					} ${
 						error
 							? 'placeholder:red-300 border-red-300 text-red-400 focus:border-red-500'
 							: isReadOnly
-							? 'cursor-not-allowed border-zinc-700 text-zinc-500'
-							: 'cursor-text border-zinc-300 text-zinc-800 focus:border-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:focus:border-white'
-					} placeholder:zinc-500 placeholder:text-xs focus:outline-none focus:ring-0 sm:text-sm md:placeholder:text-sm`}
+							? 'cursor-not-allowed border-neutral-700 text-neutral-500'
+							: 'cursor-text border-neutral-300 text-neutral-800 focus:border-neutral-900 dark:border-neutral-700 dark:text-neutral-300 dark:focus:border-white'
+					} placeholder:neutral-500 placeholder:text-xs focus:outline-none focus:ring-0 sm:text-sm md:placeholder:text-sm`}
 					disabled={isReadOnly}
 					id={id}
 					onChange={(e) => handleInput(e)}
@@ -286,7 +286,7 @@ const Input: React.FC<Props> = ({
 						}}
 						className={`absolute inset-y-0 ${
 							error ? 'right-10' : 'right-2.5'
-						} text-zinc-500 transition duration-150`}
+						} text-neutral-500 transition duration-150`}
 						data-testid={
 							showPasswordText ? 'hide-password-text' : 'show-password-text'
 						}
@@ -307,12 +307,12 @@ const Input: React.FC<Props> = ({
 							{error}
 						</p>
 					) : isReadOnly ? (
-						<p className='text-zinc-500' id={`${id}-read-only`}>
+						<p className='text-neutral-500' id={`${id}-read-only`}>
 							This field is not editable
 						</p>
 					) : helperText ? (
 						<p
-							className='text-zinc-500 dark:text-zinc-300'
+							className='text-neutral-500 dark:text-neutral-300'
 							id={`${id}-helper-text`}
 						>
 							{helperText}

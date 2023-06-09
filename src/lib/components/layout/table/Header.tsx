@@ -45,7 +45,7 @@ const Header: React.FC<Props> = ({
 		<Cell kind='header' size={size}>
 			{header.isSortable ? (
 				<button
-					className={`flex w-full items-center ${commonLayoutClasses} ring-1 ring-inset ring-transparent transition-colors duration-150 focus:outline-none focus:ring-white hover:bg-zinc-700 ${
+					className={`flex w-full items-center ${commonLayoutClasses} ring-1 ring-inset ring-transparent transition-colors duration-150 focus:outline-none focus:ring-white hover:bg-neutral-700 ${
 						isSorted ? 'text-cyan-400' : 'hover:text-cyan-400'
 					}`}
 					onMouseEnter={() => setIsHovered(true)}

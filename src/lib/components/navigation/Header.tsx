@@ -22,10 +22,6 @@ import {
 	Menu,
 } from '@carbon/icons-react';
 
-// lib
-import { formatDifference } from '@utils/dateTime';
-import { handlePluralization } from '@utils/string';
-
 // components
 import Button from '@components/utilities/Button';
 import Divider from '@components/utilities/Divider';
@@ -47,6 +43,7 @@ const Header: React.FC = () => {
 	const pathname = usePathname();
 
 	// state
+	const [isConnectMenuActive, setIsConnectMenuActive] = useState(false);
 	const [isFavoritesActive, setIsFavoritesActive] = useState(false);
 	const [isMobileMenuActive, setIsMobileMenuActive] = useState(false);
 	const [isMounted, setIsMounted] = useState(false);
@@ -58,9 +55,18 @@ const Header: React.FC = () => {
 	const generalLinks: LinkType[] = [
 		{ href: '/', title: 'Home' },
 		{ href: '/about', title: 'About' },
+		{ href: '/livestream', title: 'Livestream' },
+	];
+	const connectLinks: LinkWithIcon[] = [
+		{ href: '/service', icon: <Blog />, title: 'Service' },
+		{ href: '/house-church', icon: <Blog />, title: 'House Church' },
+		{ href: '/prayer', icon: <Blog />, title: 'Prayer' },
+		{ href: '/intro-lunch', icon: <Blog />, title: 'Intro Lunch' },
 	];
 	const resourceLinks: LinkWithIcon[] = [
-		{ href: '/blog', icon: <Blog />, title: 'Blog' },
+		{ href: '/podcast', icon: <Blog />, title: 'Podcast' },
+		{ href: '/greenhouse', icon: <Blog />, title: 'Leadership Training' },
+		{ href: '/framework-journal', icon: <Blog />, title: "Men's Study" },
 	];
 	const settingsLinks: LinkWithIcon[] = [];
 
@@ -81,9 +87,9 @@ const Header: React.FC = () => {
 	return (
 		<div className='sticky top-0 z-40 w-full backdrop-blur-sm'>
 			<div
-				className={`absolute h-full w-full border-b-2 border-zinc-200 ${
+				className={`absolute h-full w-full border-b-2 border-neutral-200 ${
 					isMounted && theme === 'dark' ? 'opacity-90' : 'opacity-10'
-				} dark:border-zinc-700 dark:bg-zinc-900`}
+				} dark:border-neutral-700 dark:bg-neutral-900`}
 			/>
 			<header aria-label='header' className='relative mx-auto w-full max-w-7xl'>
 				<div className='flex items-center justify-between p-3 lg:justify-start lg:space-x-10 lg:px-5'>
@@ -113,6 +119,22 @@ const Header: React.FC = () => {
 										/>
 									</li>
 								))}
+								<li className='relative ml-0.5'>
+									<Button
+										icon={isConnectMenuActive ? <ChevronUp /> : <ChevronDown />}
+										kind='ghost'
+										onClick={() => setIsConnectMenuActive((prev) => !prev)}
+										title='Connect'
+									/>
+									{isConnectMenuActive && (
+										<DropdownShell classes='w-48' position='left'>
+											<DropdownList
+												items={connectLinks}
+												setIsActive={setIsConnectMenuActive}
+											/>
+										</DropdownShell>
+									)}
+								</li>
 								<li className='relative ml-0.5'>
 									<Button
 										icon={
@@ -163,7 +185,7 @@ const Header: React.FC = () => {
 					</div>
 				</div>
 				{isMobileMenuActive && (
-					<nav className='shadow-stack absolute inset-x-3 z-40 mt-3 border-2 border-zinc-700 bg-zinc-900 py-5 md:inset-auto md:right-5 md:w-96 lg:hidden'>
+					<nav className='shadow-stack absolute inset-x-3 z-40 mt-3 border-2 border-neutral-700 bg-neutral-900 py-5 md:inset-auto md:right-5 md:w-96 lg:hidden'>
 						<ul>
 							<li>
 								<ul className='grid grid-flow-row grid-cols-2 gap-3 px-3'>
@@ -178,7 +200,7 @@ const Header: React.FC = () => {
 									))}
 								</ul>
 							</li>
-							<li className='mt-3 border-t-2 border-zinc-700 pt-3'>
+							<li className='mt-3 border-t-2 border-neutral-700 pt-3'>
 								<ul className='grid grid-flow-row grid-cols-2 gap-3 px-3'>
 									{resourceLinks.map((link, i) => (
 										<li key={i}>

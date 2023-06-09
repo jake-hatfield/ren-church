@@ -68,8 +68,8 @@ const Elements: React.FC<Props> = ({
 		<>
 			<div
 				className={`mt-3 ${
-					inputErrors.card ? 'border-red-300' : 'border-zinc-700'
-				} border border-b-2 bg-zinc-800 py-2.5 px-3 text-zinc-300 ring-inset placeholder:text-zinc-500 focus:border-white focus:outline-none focus:ring-white sm:text-sm ${
+					inputErrors.card ? 'border-red-300' : 'border-neutral-700'
+				} border border-b-2 bg-neutral-800 px-3 py-2.5 text-neutral-300 ring-inset placeholder:text-neutral-500 focus:border-white focus:outline-none focus:ring-white sm:text-sm ${
 					classes ? classes : ''
 				}`}
 				ref={ref}

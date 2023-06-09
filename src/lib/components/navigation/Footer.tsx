@@ -24,92 +24,65 @@ const Footer = () => {
 	// state
 	const categoryOneLinks: LinkType[] = [
 		{
-			href: '#',
-			title: 'Link 1',
+			href: '/service',
+			title: 'Service',
 		},
 		{
-			href: '#',
-			title: 'Link 2',
+			href: '/house-church',
+			title: 'House Church',
 		},
+		{ href: '/prayer', title: 'Prayer' },
 		{
-			href: '#',
-			title: 'Link 3',
-		},
-		{
-			href: '#',
-			title: 'Link 4',
-		},
-		{
-			href: '#',
-			title: 'Link 5',
+			href: '/intro',
+			title: 'Intro Lunch',
 		},
 	];
 	const categoryTwoLinks: LinkType[] = [
 		{
-			href: '#',
-			title: 'Link 1',
+			href: '/podcast',
+			title: 'Podcast',
 		},
 		{
-			href: '#',
-			title: 'Link 2',
+			href: '/greenhouse',
+			title: 'Leadership Training',
 		},
 		{
-			href: '#',
-			title: 'Link 3',
-		},
-		{
-			href: '#',
-			title: 'Link 4',
-		},
-		{
-			href: '#',
-			title: 'Link 5',
+			href: '/framework-journal',
+			title: "Men's Study",
 		},
 	];
 	const categoryThreeLinks: LinkType[] = [
 		{
-			href: '#',
-			title: 'Link 1',
+			href: '/about',
+			title: 'About',
 		},
 		{
-			href: '#',
-			title: 'Link 2',
+			href: '/team',
+			title: 'Our Team',
 		},
 		{
-			href: '#',
-			title: 'Link 3',
-		},
-		{
-			href: '#',
-			title: 'Link 4',
-		},
-		{
-			href: '#',
-			title: 'Link 5',
+			href: '/contact',
+			title: 'Contact',
 		},
 	];
+
 	const miscLinks: LinkType[] = [
 		{ href: '/sitemap.xml', title: 'Sitemap' },
 		{ href: '/rss.xml', title: 'RSS' },
 	];
 	const socialLinks: LinkWithIcon[] = [
 		{
-			href: `https://twitter.com/intent/user?screen_name=${social.twitter}`,
+			href: social.facebook,
 			icon: <LogoFacebook />,
 			title: 'Facebook',
 		},
 		{
-			href: `https://youtube.com/@${social.youtube}`,
+			href: social.instagram,
 			icon: <LogoInstagram />,
 			title: 'Instagram',
 		},
 		{
-			href: `https://twitter.com/intent/user?screen_name=${social.twitter}`,
-			icon: <LogoTwitter />,
-			title: 'Twitter',
-		},
-		{
-			href: `https://youtube.com/@${social.youtube}`,
+			href: social.youtube,
 			icon: <LogoYoutube />,
 			title: 'YouTube',
 		},
@@ -118,7 +91,7 @@ const Footer = () => {
 	return (
 		<footer
 			aria-label='footer'
-			className='mt-auto w-full border-t-2 border-zinc-200 dark:border-zinc-700 dark:bg-zinc-900'
+			className='mt-auto w-full border-t-2 border-neutral-200 dark:border-neutral-700 dark:bg-neutral-900'
 		>
 			<div className='pt-content pb-content mx-auto max-w-7xl px-3 md:px-5'>
 				<div className='md:grid md:grid-cols-5 md:gap-1.5 lg:gap-5'>
@@ -126,24 +99,11 @@ const Footer = () => {
 						<a
 							aria-label='Home'
 							href='/'
-							className='inline-block focus:ring-zinc-900 focus:dark:ring-white'
+							className='inline-block focus:ring-neutral-900 focus:dark:ring-white'
 						>
 							<Logo />
 						</a>
-						<ul className='mt-3 flex items-center'>
-							{socialLinks.map(({ href, icon, title }, i) => (
-								<li className='ml-0.5 first:ml-0' key={i}>
-									<Button
-										href={href}
-										icon={icon}
-										kind='ghost'
-										title={title}
-										type='icon'
-										tooltipAlignment={i === 0 ? 'start' : 'center'}
-									/>
-								</li>
-							))}
-						</ul>
+
 						<address className='mt-1.5 max-w-md'>
 							{address.line1}
 							<br />
@@ -151,8 +111,8 @@ const Footer = () => {
 						</address>
 					</div>
 					<div className='mt-8 md:mt-0'>
-						<p className='content-uppercase text-sm text-zinc-600 dark:text-zinc-400'>
-							Category 1
+						<p className='headline-tertiary text-sm text-neutral-600 dark:text-neutral-400'>
+							Connect
 						</p>
 						<nav>
 							<ul className='mt-3 space-y-3'>
@@ -165,48 +125,65 @@ const Footer = () => {
 						</nav>
 					</div>
 					<div className='mt-8 md:mt-0'>
-						<p className='content-uppercase text-sm text-zinc-600 dark:text-zinc-400'>
-							Category 2
+						<p className='headline-tertiary text-sm text-neutral-600 dark:text-neutral-400'>
+							Resources
 						</p>
 						<nav>
 							<ul className='mt-3 space-y-3'>
 								{categoryTwoLinks.map(({ href, title }, i) => (
 									<li className='flex items-start' key={i}>
-										<Link href={href} title={title} />
+										<Link href={`/resources${href}`} title={title} />
 									</li>
 								))}
 							</ul>
 						</nav>
 					</div>
 					<div className='mt-8 md:mt-0'>
-						<p className='content-uppercase text-sm text-zinc-600 dark:text-zinc-400'>
-							Category 3
+						<p className='headline-tertiary text-sm text-neutral-600 dark:text-neutral-400'>
+							About
 						</p>
 						<nav>
 							<ul className='mt-3 space-y-3'>
 								{categoryThreeLinks.map(({ href, title }, i) => (
 									<li className='flex items-start' key={i}>
-										<Link href={href} title={title} />
+										<Link href={`/resources${href}`} title={title} />
 									</li>
 								))}
 							</ul>
 						</nav>
 					</div>
 				</div>
-				<div className='mt-content border-t-2 border-zinc-200 pt-5 dark:border-zinc-700 md:flex md:items-end md:justify-between'>
-					<p>
-						&copy; {new Date().getFullYear()} {metadata.siteTitle} All rights
-						reserved.
-					</p>
-					<nav>
-						<ul className='mt-3 md:mt-0 md:ml-3 md:flex md:items-end'>
-							{miscLinks.map(({ href, title }, i) => (
-								<li className='mt-3 first:ml-0 md:mt-0 md:ml-3' key={i}>
-									<Link href={href} title={title} />
-								</li>
-							))}
-						</ul>
-					</nav>
+				<div className='mt-content border-t-2 border-neutral-200 pt-5 dark:border-neutral-700 md:flex md:items-end md:justify-between'>
+					<div className='flex items-end'>
+						<p>
+							&copy; {new Date().getFullYear()} {metadata.siteTitle}. All rights
+							reserved.
+						</p>
+						<nav>
+							<ul className='mt-3 md:ml-3 md:mt-0 md:flex md:items-end'>
+								{miscLinks.map(({ href, title }, i) => (
+									<li className='mt-3 first:ml-0 md:ml-3 md:mt-0' key={i}>
+										<Link href={href} title={title} />
+									</li>
+								))}
+							</ul>
+						</nav>
+					</div>
+					<ul className='flex items-center'>
+						{socialLinks.map(({ href, icon, title }, i) => (
+							<li className='ml-0.5 first:ml-0' key={i}>
+								<Button
+									href={href}
+									icon={icon}
+									kind='ghost'
+									title={title}
+									type='icon'
+									tooltipAlignment={i === 0 ? 'start' : 'center'}
+									tooltipPosition='top'
+								/>
+							</li>
+						))}
+					</ul>
 				</div>
 			</div>
 		</footer>

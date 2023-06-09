@@ -175,7 +175,7 @@ const Table: React.FC<Props> = ({
 		<div className="minimal-scrollbar overflow-x-auto pb-12">
 			{/* table */}
 			<table className="w-full">
-				<thead className="bg-zinc-800">
+				<thead className="bg-neutral-800">
 					<tr>
 						{hasSelection && <Cell classes="w-12 md:w-16" kind="body" size={size}>
 								<div className="flex items-center justify-center">
@@ -216,11 +216,11 @@ const Table: React.FC<Props> = ({
 				</tbody>
 			</table>
 		</div>
-		{hasPagination && <div className="flex items-center justify-between border-t-2 border-zinc-700 px-2">
+		{hasPagination && <div className="flex items-center justify-between border-t-2 border-neutral-700 px-2">
 				<div className="flex items-center">
-					<div className="border-r-2 border-zinc-700 pr-1.5">
+					<div className="border-r-2 border-neutral-700 pr-1.5">
 						<div className="flex items-center pt-1.5">
-							<p className="flex items-center text-zinc-300">
+							<p className="flex items-center text-neutral-300">
 								<span>Items</span> <span className="ml-1.5 hidden md:block">per page:</span>
 							</p>
 							<div
@@ -237,11 +237,11 @@ const Table: React.FC<Props> = ({
 									title={itemsPerPage.toString()}
 								/>
 								{isItemsPerPageActive &&	<ul
-										className="shadow-stack absolute inset-x-0 top-12 border-2 border-t-4 border-zinc-700 bg-zinc-900"
+										className="shadow-stack absolute inset-x-0 top-12 border-2 border-t-4 border-neutral-700 bg-neutral-900"
 									>
 										{[5, 10, 25].map((option, i) => (<li key={i}>
 												<button
-													className="w-full transform p-1.5 text-left transition-colors duration-150 hover:bg-zinc-800"
+													className="w-full transform p-1.5 text-left transition-colors duration-150 hover:bg-neutral-800"
 													onClick={() => {
 														page = 1;
 														itemsPerPage = option;
@@ -260,12 +260,12 @@ const Table: React.FC<Props> = ({
 							</div>
 						</div>
 					</div>
-					<div className="hidden px-3 pt-1.5 text-zinc-300 md:flex md:items-center">
+					<div className="hidden px-3 pt-1.5 text-neutral-300 md:flex md:items-center">
 						<p>{itemsFrom}-{itemsTo} of {handlePluralization('item', totalItems, true)}</p>
 					</div>
 				</div>
 				<div className="flex items-center">
-					<div className="flex items-center pt-1.5 pl-1.5 md:border-l-2 md:border-zinc-700">
+					<div className="flex items-center pt-1.5 pl-1.5 md:border-l-2 md:border-neutral-700">
 						<div
 							className="relative"
 							// use:handleClickOutside={{
@@ -281,11 +281,11 @@ const Table: React.FC<Props> = ({
 								title={page.toString()}
 							/>
 							{isPagesActive && <ul
-									className="shadow-stack minimal-scrollbar absolute inset-x-0 top-12 max-h-28 overflow-y-auto border-2 border-t-4 border-zinc-700 bg-zinc-900"
+									className="shadow-stack minimal-scrollbar absolute inset-x-0 top-12 max-h-28 overflow-y-auto border-2 border-t-4 border-neutral-700 bg-neutral-900"
 								>
 									{Array.from({ length: Math.ceil(totalItems / itemsPerPage) }, (_, i) => i + 1).map((item, i) => (	<li key={i}>
 											<button
-												className="w-full transform p-1.5 text-left transition-colors duration-150 hover:bg-zinc-800"
+												className="w-full transform p-1.5 text-left transition-colors duration-150 hover:bg-neutral-800"
 												onClick={async () => {
 													page = item;
                                                     setShouldRequestNewItems(true)
@@ -301,7 +301,7 @@ const Table: React.FC<Props> = ({
 
 
 						</div>
-						<p className="hidden pl-1.5 pr-3 text-zinc-300 md:block">
+						<p className="hidden pl-1.5 pr-3 text-neutral-300 md:block">
 							of {handlePluralization(
 								'page',
 								totalItems / itemsPerPage < 1 ? 1 : Math.ceil(totalItems / itemsPerPage),
@@ -309,7 +309,7 @@ const Table: React.FC<Props> = ({
 							)}
 						</p>
 					</div>
-					<div className="flex items-center border-l-2 border-zinc-700 pl-1.5 pt-1.5">
+					<div className="flex items-center border-l-2 border-neutral-700 pl-1.5 pt-1.5">
 						<Button
 							icon={<ArrowLeft/>}
 							isDisabled={page < 2}

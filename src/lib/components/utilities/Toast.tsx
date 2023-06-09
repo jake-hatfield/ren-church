@@ -28,7 +28,7 @@ const Toast: React.FC<Props> = ({
 }) => {
 	return (
 		<>
-			<li className='shadow-stack flex w-80 max-w-full items-start justify-between border-2 border-t-4 border-zinc-700 bg-zinc-900 p-3'>
+			<li className='shadow-stack flex w-80 max-w-full items-start justify-between border-2 border-t-4 border-neutral-700 bg-neutral-900 p-3'>
 				<div className='flex w-4/5 items-start'>
 					{kind === 'error' ? (
 						<ErrorFilled className='mt-1 flex-none text-red-500' size={20} />
@@ -47,12 +47,14 @@ const Toast: React.FC<Props> = ({
 					<div className='ml-3'>
 						<header>
 							<h3 className='mono text-sm font-semibold'>{title}</h3>
-							<p className='mt-1.5 break-words text-zinc-300'>{description}</p>
+							<p className='mt-1.5 break-words text-neutral-300'>
+								{description}
+							</p>
 						</header>
 						<div className='mt-3'>
 							<slot name='action' />
 						</div>
-						<p className='mt-1.5 text-sm text-zinc-300'>
+						<p className='mt-1.5 text-sm text-neutral-300'>
 							<time dateTime={createdAt.toString()}>
 								{createdAt.toFormat('tt')}
 							</time>

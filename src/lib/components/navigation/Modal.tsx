@@ -22,11 +22,11 @@ const Modal: React.FC<Props> = ({
 		<div aria-expanded={isActive}>
 			<div
 				aria-hidden='true'
-				className='fixed inset-0 -top-20 z-40 h-[10000px] bg-zinc-700 opacity-75 lg:-top-12'
+				className='fixed inset-0 -top-20 z-40 h-[10000px] bg-neutral-700 opacity-75 lg:-top-12'
 				onClick={handleClose}
 			/>
-			<aside className='shadow-stack minimal-scrollbar fixed left-2 right-2 top-0 z-40 max-h-screen max-w-lg transform overflow-y-auto border-2 border-zinc-700 bg-zinc-900 md:top-1/2 md:left-1/2 md:max-h-screen md:w-full md:-translate-x-1/2 md:-translate-y-1/2'>
-				<div className='flex items-center justify-between border-b-2 border-zinc-700 px-3 pt-3 pb-1.5 md:px-5'>
+			<aside className='shadow-stack minimal-scrollbar fixed left-2 right-2 top-0 z-40 max-h-screen max-w-lg transform overflow-y-auto border-2 border-neutral-700 bg-neutral-900 md:left-1/2 md:top-1/2 md:max-h-screen md:w-full md:-translate-x-1/2 md:-translate-y-1/2'>
+				<div className='flex items-center justify-between border-b-2 border-neutral-700 px-3 pb-1.5 pt-3 md:px-5'>
 					<header className='w-5/6 whitespace-normal'>
 						<h5 className='text-base font-semibold md:text-lg'>{title}</h5>
 					</header>
@@ -44,7 +44,7 @@ const Modal: React.FC<Props> = ({
 					<slot name='description' />
 				</div>
 				{hasAction && (
-					<div className='flex justify-end border-t-2 border-zinc-700 bg-zinc-900 px-3 pt-2 pb-3 md:px-5'>
+					<div className='flex justify-end border-t-2 border-neutral-700 bg-neutral-900 px-3 pb-3 pt-2 md:px-5'>
 						<slot name='action' />
 					</div>
 				)}

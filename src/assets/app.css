@@ -8,14 +8,42 @@
 	background: rgb(0 100 0 / 0.1) !important;
 } */
 
+.font-display {
+	font-family: 'DM Serif Display', sans-serif !important;
+}
+
+.font-header {
+	font-family: 'Oswald Variable', sans-serif !important;
+}
+
+.font-body {
+	font-family: 'Lato', sans-serif !important;
+}
+
+body {
+	@apply font-body;
+}
+
 ::selection {
-	@apply bg-cyan-500 text-white dark:bg-zinc-600 dark:text-zinc-100;
+	@apply bg-rose-800 text-white dark:bg-neutral-600 dark:text-neutral-100;
 }
 
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
 	-webkit-appearance: none;
 	margin: 0;
+}
+
+.headline-primary {
+	@apply font-display text-7xl font-black leading-loose tracking-wider;
+}
+
+.headline-secondary {
+	@apply font-display text-3xl font-black leading-normal tracking-wide;
+}
+
+.headline-tertiary {
+	@apply font-header text-lg font-bold leading-normal tracking-wider;
 }
 
 #content-markdown {
@@ -27,7 +55,7 @@ input[type='number']::-webkit-outer-spin-button {
 		}
 
 		blockquote {
-			@apply my-8 border-2 border-t-4 border-zinc-700 p-3 text-sm md:p-5;
+			@apply my-8 border-2 border-t-4 border-neutral-700 p-3 text-sm md:p-5;
 
 			p {
 				@apply mt-0 leading-6;
@@ -36,7 +64,7 @@ input[type='number']::-webkit-outer-spin-button {
 
 		code {
 			font-size: 15px;
-			@apply border border-zinc-700 bg-zinc-300 px-1 text-sm font-semibold text-zinc-900;
+			@apply border border-neutral-700 bg-neutral-300 px-1 text-sm font-semibold text-neutral-900;
 		}
 
 		h2 {
@@ -61,7 +89,7 @@ input[type='number']::-webkit-outer-spin-button {
 		}
 
 		img + em {
-			@apply mt-3 mb-5 block text-center text-sm;
+			@apply mb-5 mt-3 block text-center text-sm;
 		}
 
 		p {
@@ -141,7 +169,7 @@ input[type='number']::-webkit-outer-spin-button {
 
 mark,
 .highlight {
-	@apply bg-cyan-400 px-0.5 font-semibold text-zinc-900;
+	@apply bg-cyan-400 px-0.5 font-semibold text-neutral-900;
 }
 
 .mb-content {
@@ -149,7 +177,7 @@ mark,
 }
 
 .minimal-scrollbar {
-	@apply scrollbar-thin scrollbar-track-zinc-100 scrollbar-thumb-zinc-500 dark:scrollbar-track-zinc-800 dark:scrollbar-thumb-zinc-600;
+	@apply scrollbar-thin scrollbar-track-neutral-100 scrollbar-thumb-neutral-500 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600;
 }
 
 .mt-content {
@@ -189,9 +217,9 @@ mark,
 }
 
 .sub-header {
-	@apply sub-header-base text-zinc-700 dark:text-zinc-200;
+	@apply sub-header-base text-neutral-700 dark:text-neutral-200;
 }
 
 .sub-header-alt {
-	@apply sub-header-base text-zinc-100 dark:text-zinc-800;
+	@apply sub-header-base text-neutral-100 dark:text-neutral-800;
 }
