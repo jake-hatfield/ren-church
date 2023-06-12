@@ -26,10 +26,10 @@ const Badge: React.FC<Props> = ({
 					: kind === 'error'
 					? 'border-red-400 bg-red-300 text-red-600 dark:border-red-900 dark:text-red-900'
 					: kind === 'info'
-					? 'border-neutral-300 bg-neutral-200 text-neutral-700 dark:border-neutral-900 dark:bg-neutral-300 dark:text-neutral-900'
+					? 'border-gray-300 bg-gray-200 text-gray-700 dark:border-gray-900 dark:bg-gray-300 dark:text-gray-900'
 					: kind === 'highlighted'
-					? 'border-cyan-500 bg-cyan-400 text-cyan-800 dark:border-cyan-900 dark:bg-cyan-400 dark:text-neutral-900'
-					: 'border-neutral-200 bg-white text-neutral-900 dark:border-neutral-700 dark:bg-neutral-900 dark:text-white'
+					? 'border-cyan-500 bg-cyan-400 text-cyan-800 dark:border-cyan-900 dark:bg-cyan-400 dark:text-gray-900'
+					: 'border-gray-300 bg-white text-gray-900 dark:border-gray-700 dark:bg-gray-900 dark:text-white'
 			} ${classes ? classes : ''}`}
 		>
 			{title}

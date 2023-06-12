@@ -31,35 +31,33 @@ const Tooltip: React.FC<Props> = ({
 						: size === 'sm'
 						? 'top-10'
 						: 'top-14'
-				} z-10 bg-neutral-200 px-3 py-1.5 text-sm dark:bg-neutral-800`}
+				} z-10 bg-gray-900 px-3 py-1.5 text-sm text-gray-200 dark:bg-gray-800`}
 			>
-				<div className='relative text-neutral-200 dark:text-neutral-800'>
+				<div className='relative text-gray-900'>
 					<svg
 						aria-hidden='true'
 						xmlns='http://www.w3.org/2000/svg'
 						width='16'
 						height='16'
 						fill='currentColor'
-						className={`absolute -top-[17px] ${
+						className={`absolute transform ${
 							alignment === 'start'
 								? size === 'sm' || size === 'field'
 									? '-left-1'
 									: 'left-0'
 								: alignment === 'center'
-								? 'left-1/2 -translate-x-1/2 transform'
+								? 'left-1/2 -translate-x-1/2 '
 								: size === 'sm' || size === 'field'
 								? '-right-1'
 								: 'right-0'
-						} `}
+						} ${position === 'top' ? 'top-5 rotate-180' : '-top-[17px]'}`}
 						viewBox='0 0 16 16'
 					>
 						<path d='m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z' />
 					</svg>
 				</div>
 
-				<span className='whitespace-nowrap text-neutral-900 dark:text-white'>
-					{title}
-				</span>
+				<span className='whitespace-nowrap'>{title}</span>
 			</span>
 		</>
 	);

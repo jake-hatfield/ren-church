@@ -48,7 +48,7 @@ const Row: React.FC<Props> = ({
 	};
 
 	return (
-		<tr className='group:hover border-b-2 border-neutral-700 transition duration-150 last:border-transparent hover:bg-neutral-800'>
+		<tr className='group:hover border-b-2 border-gray-700 transition duration-150 last:border-transparent hover:bg-gray-800'>
 			{hasSelection && (
 				<Cell classes='w-12 md:w-16' kind='body' size={size}>
 					<div className='flex items-center justify-center'>
@@ -83,7 +83,7 @@ const Row: React.FC<Props> = ({
 								type='icon'
 							/>
 							{isMenuActive && (
-								<ul className='absolute right-0 top-10 z-20 w-48 border-2 border-neutral-700'>
+								<ul className='absolute right-0 top-10 z-20 w-48 border-2 border-gray-700'>
 									{row.actions.map((action, i) => (
 										<li className='mt-0.5 first:mt-0' key={i}>
 											<Button

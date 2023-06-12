@@ -32,7 +32,7 @@ const Link: React.FC<Props> = ({
 	}`;
 
 	return isDisabled ? (
-		<p className={`${commonClasses} text-neutral-500 text-opacity-80`}>
+		<p className={`${commonClasses} text-gray-500 text-opacity-80`}>
 			<>
 				{title}
 				{children && children}

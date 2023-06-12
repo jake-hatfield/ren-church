@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 // packages
-import { DateTime } from 'luxon';
 import { useTheme } from 'next-themes';
 
 // icons
@@ -24,60 +23,55 @@ import {
 
 // components
 import Button from '@components/utilities/Button';
-import Divider from '@components/utilities/Divider';
 import DropdownList from '@components/layout/DropdownList';
-// import DropdownPanel from '@components/layout/DropdownPanel';
 import DropdownShell from '@components/layout/DropdownShell';
 import Link from '@components/utilities/Link';
-import Logo from '@assets/images/vectors/Logo';
+import Socials from '@components/navigation/Socials';
 import Toggle from '@components/utilities/Toggle';
 
+// assets
+import Logo from '@assets/images/vectors/Logo';
+
 // types
-import type { Link as LinkType, LinkWithIcon } from '$types/Link';
+import type { Link as LinkType } from '$types/Link';
 
 const Header: React.FC = () => {
 	// theme
-	const { theme, setTheme } = useTheme();
+	const { theme } = useTheme();
 
 	// next
 	const pathname = usePathname();
 
 	// state
 	const [isConnectMenuActive, setIsConnectMenuActive] = useState(false);
-	const [isFavoritesActive, setIsFavoritesActive] = useState(false);
 	const [isMobileMenuActive, setIsMobileMenuActive] = useState(false);
 	const [isMounted, setIsMounted] = useState(false);
 	const [isResourceMenuActive, setIsResourceMenuActive] = useState(false);
-	const [isUserMenuActive, setIsUserMenuActive] = useState(false);
-	const [isLoading, setIsLoading] = useState(false);
 
 	// state data
 	const generalLinks: LinkType[] = [
-		{ href: '/', title: 'Home' },
 		{ href: '/about', title: 'About' },
 		{ href: '/livestream', title: 'Livestream' },
 	];
-	const connectLinks: LinkWithIcon[] = [
-		{ href: '/service', icon: <Blog />, title: 'Service' },
-		{ href: '/house-church', icon: <Blog />, title: 'House Church' },
-		{ href: '/prayer', icon: <Blog />, title: 'Prayer' },
-		{ href: '/intro-lunch', icon: <Blog />, title: 'Intro Lunch' },
+	const connectLinks: LinkType[] = [
+		{ href: '/service', title: 'Service' },
+		{ href: '/house-church', title: 'House Church' },
+		{ href: '/prayer', title: 'Prayer' },
+		{ href: '/intro', title: 'Intro Lunch' },
 	];
-	const resourceLinks: LinkWithIcon[] = [
-		{ href: '/podcast', icon: <Blog />, title: 'Podcast' },
-		{ href: '/greenhouse', icon: <Blog />, title: 'Leadership Training' },
-		{ href: '/framework-journal', icon: <Blog />, title: "Men's Study" },
+	const resourceLinks: LinkType[] = [
+		{ href: '/podcast', title: 'Podcast' },
+		{
+			href: '/resources/leadership-training',
+
+			title: 'Leadership Training',
+		},
+		{ href: '/resources/mens-study', title: "Men's Study" },
 	];
-	const settingsLinks: LinkWithIcon[] = [];
 
 	// functions
 	const closeMobileMenu = () => {
 		setIsMobileMenuActive(false);
-	};
-
-	const handleSignOut = async () => {
-		setIsUserMenuActive(false);
-		closeMobileMenu();
 	};
 
 	useEffect(() => {
@@ -85,11 +79,11 @@ const Header: React.FC = () => {
 	}, []);
 
 	return (
-		<div className='sticky top-0 z-40 w-full backdrop-blur-sm'>
+		<div className='sticky top-0 z-40 w-full backdrop-blur-md'>
 			<div
-				className={`absolute h-full w-full border-b-2 border-neutral-200 ${
-					isMounted && theme === 'dark' ? 'opacity-90' : 'opacity-10'
-				} dark:border-neutral-700 dark:bg-neutral-900`}
+				className={`absolute h-full w-full border-b-2 border-rose-900 dark:border-gray-700 dark:bg-gray-900 ${
+					isMounted && theme === 'dark' ? 'opacity-90' : ''
+				}`}
 			/>
 			<header aria-label='header' className='relative mx-auto w-full max-w-7xl'>
 				<div className='flex items-center justify-between p-3 lg:justify-start lg:space-x-10 lg:px-5'>
@@ -156,36 +150,22 @@ const Header: React.FC = () => {
 							</ul>
 						</nav>
 						<ul className='flex items-center space-x-0.5'>
-							{isMounted && (
-								<li>
-									<Toggle
-										defaultIsChecked={theme === 'dark'}
-										itemLeft={<LightFilled />}
-										itemRight={<AsleepFilled />}
-										name='theme'
-										onChange={() =>
-											setTheme(theme === 'dark' ? 'light' : 'dark')
-										}
-									/>
-								</li>
-							)}
 							<li>
-								<Button
-									classes='ml-3'
-									href='/sign-in'
-									icon={<ArrowRight />}
-									kind='ghost'
-									title='Sign in'
-								/>
+								<Socials tooltipPosition='bottom' />
 							</li>
 							<li>
-								<Button href='/sign-up' icon={<ArrowRight />} title='Sign up' />
+								<Button
+									classes='ml-5'
+									href='/give'
+									icon={<ArrowRight />}
+									title='Give'
+								/>
 							</li>
 						</ul>
 					</div>
 				</div>
 				{isMobileMenuActive && (
-					<nav className='shadow-stack absolute inset-x-3 z-40 mt-3 border-2 border-neutral-700 bg-neutral-900 py-5 md:inset-auto md:right-5 md:w-96 lg:hidden'>
+					<nav className='shadow-stack absolute inset-x-3 z-40 mt-3 border-2 border-gray-700 bg-gray-900 py-5 md:inset-auto md:right-5 md:w-96 lg:hidden'>
 						<ul>
 							<li>
 								<ul className='grid grid-flow-row grid-cols-2 gap-3 px-3'>
@@ -200,7 +180,7 @@ const Header: React.FC = () => {
 									))}
 								</ul>
 							</li>
-							<li className='mt-3 border-t-2 border-neutral-700 pt-3'>
+							<li className='mt-3 border-t-2 border-gray-700 pt-3'>
 								<ul className='grid grid-flow-row grid-cols-2 gap-3 px-3'>
 									{resourceLinks.map((link, i) => (
 										<li key={i}>

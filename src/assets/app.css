@@ -25,7 +25,7 @@ body {
 }
 
 ::selection {
-	@apply bg-rose-800 text-white dark:bg-neutral-600 dark:text-neutral-100;
+	@apply bg-rose-900 text-rose-200 dark:bg-gray-600 dark:text-gray-100;
 }
 
 input[type='number']::-webkit-inner-spin-button,
@@ -35,7 +35,7 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .headline-primary {
-	@apply font-display text-7xl font-black leading-loose tracking-wider;
+	@apply font-display text-7xl font-black leading-relaxed tracking-wider;
 }
 
 .headline-secondary {
@@ -43,7 +43,7 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .headline-tertiary {
-	@apply font-header text-lg font-bold leading-normal tracking-wider;
+	@apply font-header text-lg font-semibold leading-normal tracking-wider;
 }
 
 #content-markdown {
@@ -55,7 +55,7 @@ input[type='number']::-webkit-outer-spin-button {
 		}
 
 		blockquote {
-			@apply my-8 border-2 border-t-4 border-neutral-700 p-3 text-sm md:p-5;
+			@apply my-8 border-2 border-t-4 border-gray-700 p-3 text-sm md:p-5;
 
 			p {
 				@apply mt-0 leading-6;
@@ -64,7 +64,7 @@ input[type='number']::-webkit-outer-spin-button {
 
 		code {
 			font-size: 15px;
-			@apply border border-neutral-700 bg-neutral-300 px-1 text-sm font-semibold text-neutral-900;
+			@apply border border-gray-700 bg-gray-300 px-1 text-sm font-semibold text-gray-900;
 		}
 
 		h2 {
@@ -169,7 +169,7 @@ input[type='number']::-webkit-outer-spin-button {
 
 mark,
 .highlight {
-	@apply bg-cyan-400 px-0.5 font-semibold text-neutral-900;
+	@apply bg-cyan-400 px-0.5 font-semibold text-gray-900;
 }
 
 .mb-content {
@@ -177,14 +177,20 @@ mark,
 }
 
 .minimal-scrollbar {
-	@apply scrollbar-thin scrollbar-track-neutral-100 scrollbar-thumb-neutral-500 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600;
+	@apply scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-gray-500 dark:scrollbar-track-gray-800 dark:scrollbar-thumb-gray-600;
 }
 
 .mt-content {
 	@apply mt-8 md:mt-10 lg:mt-12;
 }
 
+.z-0 {
+	@apply relative;
+	z-index: 0;
+}
+
 .negative-z {
+	@apply relative;
 	z-index: -1;
 }
 
@@ -217,9 +223,9 @@ mark,
 }
 
 .sub-header {
-	@apply sub-header-base text-neutral-700 dark:text-neutral-200;
+	@apply sub-header-base text-gray-700 dark:text-gray-200;
 }
 
 .sub-header-alt {
-	@apply sub-header-base text-neutral-100 dark:text-neutral-800;
+	@apply sub-header-base text-gray-100 dark:text-gray-800;
 }

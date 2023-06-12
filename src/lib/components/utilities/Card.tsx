@@ -32,8 +32,8 @@ const Card: React.FC<Props> = ({
 			className={`${
 				isPrimary
 					? 'card-shadow-primary border-cyan-500'
-					: 'card-shadow border-neutral-200 dark:border-neutral-700'
-			} transform list-none border-2 border-t-4 bg-white p-3 dark:bg-neutral-900 md:p-5 ${
+					: 'card-shadow border-gray-300 dark:border-gray-700'
+			} transform list-none border-2 border-t-4 bg-white p-3 dark:bg-gray-900 md:p-5 ${
 				classes ? classes : ''
 			}`}
 		>
@@ -45,7 +45,7 @@ const Card: React.FC<Props> = ({
 				<h3
 					className={`${
 						isExpandable ? 'mt-1.5 md:mt-0' : ''
-					} text-base font-black leading-6 text-neutral-900 dark:text-white lg:text-lg`}
+					} text-base font-black leading-6 text-gray-900 dark:text-white lg:text-lg`}
 				>
 					{title}
 				</h3>
@@ -62,7 +62,7 @@ const Card: React.FC<Props> = ({
 				)}
 			</header>
 			{(!isExpandable || isExpanded) && (
-				<div className='mt-3 text-base text-neutral-700 dark:text-neutral-200'>
+				<div className='mt-3 text-base text-gray-700 dark:text-gray-200'>
 					{children}
 				</div>
 			)}

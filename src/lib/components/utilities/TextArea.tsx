@@ -46,24 +46,22 @@ const TextArea: React.FC<Props> = ({
 			{label && (
 				<label
 					htmlFor={id}
-					className={`block font-medium text-neutral-700 dark:text-neutral-300 ${
+					className={`block font-medium text-gray-700 dark:text-gray-300 ${
 						isLabelHidden ? 'sr-only' : ''
-					} ${
-						isReadOnly ? 'cursor-not-allowed text-neutral-500' : 'cursor-text'
-					}`}
+					} ${isReadOnly ? 'cursor-not-allowed text-gray-500' : 'cursor-text'}`}
 				>
 					{label}
 					{isRequired ? '*' : ''}
 				</label>
 			)}
 			<textarea
-				className={`minimal-scrollbar block h-32 w-full border-b-2 bg-neutral-100 px-3 py-1.5 dark:bg-neutral-800 md:py-2 ${
+				className={`minimal-scrollbar block h-32 w-full border-b-2 bg-gray-100 px-3 py-1.5 dark:bg-gray-800 md:py-2 ${
 					error
 						? 'placeholder:red-300 border-red-300 text-red-400 focus:border-red-500'
 						: isReadOnly
-						? 'cursor-not-allowed border-neutral-700 text-neutral-500'
-						: 'cursor-text border-neutral-300 text-neutral-800 focus:border-neutral-900 focus:ring-0 dark:border-neutral-700 dark:text-neutral-300 dark:focus:border-white'
-				} placeholder:neutral-500 text-sm placeholder:text-sm focus:outline-none ${
+						? 'cursor-not-allowed border-gray-700 text-gray-500'
+						: 'cursor-text border-gray-300 text-gray-800 focus:border-gray-900 focus:ring-0 dark:border-gray-700 dark:text-gray-300 dark:focus:border-white'
+				} placeholder:gray-500 text-sm placeholder:text-sm focus:outline-none ${
 					label ? 'mt-1.5' : ''
 				}`}
 				disabled={isReadOnly}
@@ -80,12 +78,12 @@ const TextArea: React.FC<Props> = ({
 						{error}
 					</p>
 				) : isReadOnly ? (
-					<p className='text-neutral-500' id={`${id}-read-only`}>
+					<p className='text-gray-500' id={`${id}-read-only`}>
 						This field is read-only
 					</p>
 				) : helperText ? (
 					<p
-						className='text-neutral-500 dark:text-neutral-300'
+						className='text-gray-500 dark:text-gray-300'
 						id={`${id}-helper-text`}
 					>
 						{helperText}
@@ -93,7 +91,7 @@ const TextArea: React.FC<Props> = ({
 				) : (
 					<></>
 				)}
-				<span className='mt-1.5 inline-block text-neutral-500 dark:text-neutral-300'>
+				<span className='mt-1.5 inline-block text-gray-500 dark:text-gray-300'>
 					{handlePluralization(
 						'character',
 						characterLimit - characterCount,

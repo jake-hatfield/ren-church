@@ -31,7 +31,7 @@ const Toggle: React.FC<Props> = ({
 	return (
 		<label
 			htmlFor={name}
-			className={`flex w-fit cursor-pointer items-center font-semibold text-neutral-500 dark:text-neutral-300 ${
+			className={`flex w-fit cursor-pointer items-center font-semibold text-gray-500 dark:text-gray-300 ${
 				classes ? classes : ''
 			}`}
 			data-testid={`toggle-${name}`}
@@ -59,7 +59,7 @@ const Toggle: React.FC<Props> = ({
 							? 'border-red-400 bg-red-300'
 							: isChecked
 							? 'border-cyan-600 bg-cyan-500 dark:border-cyan-500 dark:bg-cyan-400'
-							: 'border-neutral-300 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800'
+							: 'border-gray-300 bg-gray-100 dark:border-gray-700 dark:bg-gray-800'
 					}`}
 				/>
 				<span
@@ -68,7 +68,7 @@ const Toggle: React.FC<Props> = ({
 							? 'bg-red-900'
 							: isChecked
 							? 'translate-x-6 bg-white'
-							: 'bg-neutral-500 dark:bg-neutral-300'
+							: 'bg-gray-500 dark:bg-gray-300'
 					}`}
 				/>
 			</div>

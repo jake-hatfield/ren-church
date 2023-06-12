@@ -55,10 +55,10 @@ const SearchInput: React.FC<Props> = ({
 	return (
 		<div className='relative'>
 			<span className='absolute inset-y-0 left-0 px-3 pb-2 pt-2.5'>
-				<Search className='flex-none text-neutral-500' size={20} />
+				<Search className='flex-none text-gray-500' size={20} />
 			</span>
 			<input
-				className='mono block w-full cursor-text border-b-2 border-neutral-200 bg-neutral-100 py-2 pl-10 pr-2 text-neutral-800 outline-none placeholder:text-xs placeholder:text-neutral-500 focus:border-neutral-900 focus:outline-none focus:ring-0 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 dark:focus:border-white sm:text-sm md:pr-10 md:placeholder:text-sm'
+				className='mono block w-full cursor-text border-b-2 border-gray-300 bg-gray-100 py-2 pl-10 pr-2 text-gray-800 outline-none placeholder:text-xs placeholder:text-gray-500 focus:border-gray-900 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-white sm:text-sm md:pr-10 md:placeholder:text-sm'
 				data-testid='search-input'
 				onChange={(e) => setQuery(e.target.value)}
 				placeholder={placeholder}
@@ -67,7 +67,7 @@ const SearchInput: React.FC<Props> = ({
 				value={query}
 			/>
 			<div className='absolute right-3 top-2.5 hidden md:flex md:items-center'>
-				<span className='w-min-content flex h-5 items-center justify-center bg-neutral-200 px-1 py-0.5 text-xs font-semibold text-neutral-700 dark:bg-neutral-700 dark:text-white'>
+				<span className='w-min-content flex h-5 items-center justify-center bg-gray-200 px-1 py-0.5 text-xs font-semibold text-gray-700 dark:bg-gray-700 dark:text-white'>
 					{query ? (
 						<button
 							onClick={() => clearQuery()}

@@ -24,7 +24,7 @@ const Checkbox: React.FC<Props> = ({
 
 	return (
 		<input
-			className={`h-4 w-4 border-neutral-200 bg-neutral-200 text-cyan-500 focus:outline-none focus:ring-cyan-400 dark:border-neutral-700 dark:bg-neutral-700 ${
+			className={`h-4 w-4 border-gray-300 bg-gray-200 text-cyan-500 focus:outline-none focus:ring-cyan-400 dark:border-gray-700 dark:bg-gray-700 ${
 				classes ? classes : ''
 			}`}
 			checked={isChecked}

@@ -87,13 +87,13 @@ const Button: React.FC<Props> = (props) => {
 	} tracking-wide font-semibold`;
 	const commonStyleClasses = `${
 		kind === 'primary'
-			? 'bg-rose-600 dark:bg-rose-500 dark:hover:bg-rose-600 text-white hover:bg-rose-700'
+			? 'bg-rose-900 dark:bg-rose-500 dark:hover:bg-rose-800 text-rose-200 hover:bg-rose-800'
 			: kind === 'secondary'
-			? 'bg-cyan-500 hover:bg-cyan-600 dark:bg-cyan-400 text-white dark:text-neutral-900 dark:hover:bg-cyan-500'
+			? 'bg-cyan-500 hover:bg-cyan-600 dark:bg-cyan-400 text-white dark:text-gray-900 dark:hover:bg-cyan-500'
 			: kind === 'tertiary'
-			? 'bg-neutral-200 text-neutral-900 hover:bg-neutral-300 dark:bg-neutral-700 dark:text-white dark:hover:bg-neutral-600'
-			: 'bg-transparent hover:text-cyan-600 hover:bg-neutral-100 dark:hover:bg-neutral-800 dark:hover:text-cyan-400'
-	} ring-1 ring-transparent ring-inset focus:outline-none focus:ring-neutral-300 dark:focus:ring-white transition-colors duration-150`;
+			? 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
+			: 'bg-transparent text-gray-600 dark:text-gray-300 hover:text-cyan-600 hover:bg-gray-300 dark:hover:bg-gray-800 dark:hover:text-cyan-400'
+	} ring-1 ring-transparent ring-inset focus:outline-none focus:ring-gray-300 dark:focus:ring-white transition-colors duration-150`;
 
 	return (
 		<div className='relative inline'>
@@ -113,7 +113,7 @@ const Button: React.FC<Props> = (props) => {
 					}}
 					className={`${commonLayoutClasses} ${commonTypographyClasses} ${
 						isInactive
-							? 'cursor-not-allowed bg-neutral-800 text-neutral-500'
+							? 'cursor-not-allowed bg-gray-800 text-gray-500'
 							: commonStyleClasses
 					} ${isSelected && !isInactive ? selectedClasses : ''} ${
 						classes ? classes : ''
@@ -151,7 +151,7 @@ const Button: React.FC<Props> = (props) => {
 					}}
 					className={`${commonLayoutClasses} ${commonTypographyClasses} ${
 						isInactive
-							? 'cursor-not-allowed bg-neutral-200 text-neutral-500 dark:bg-neutral-800'
+							? 'cursor-not-allowed bg-gray-200 text-gray-500 dark:bg-gray-800'
 							: commonStyleClasses
 					} ${isSelected && !isInactive ? selectedClasses : ''} ${
 						classes ? classes : ''

@@ -4,7 +4,7 @@ import Button from '@components/utilities/Button';
 // types
 import type { Dispatch, SetStateAction } from 'react';
 interface Props {
-	items: { href: string; icon: React.ReactNode | null; title: string }[];
+	items: { href: string; title: string }[];
 	setIsActive: Dispatch<SetStateAction<boolean>>;
 }
 

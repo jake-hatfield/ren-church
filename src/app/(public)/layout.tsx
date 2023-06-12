@@ -15,7 +15,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<DarkTheme>
 			<SkeletonTheme>
-				<div className='relative flex h-full min-h-screen flex-col items-start bg-white dark:bg-neutral-900'>
+				<div className='relative flex h-full min-h-screen flex-col items-start bg-gray-200 dark:bg-gray-900'>
 					<Header />
 					<main className='minimal-scrollbar relative h-full w-full'>
 						{children}

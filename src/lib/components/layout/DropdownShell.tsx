@@ -14,7 +14,7 @@ const DropdownShell: React.FC<Props> = ({
 		<nav
 			className={`card-shadow absolute z-30 ${
 				position === 'right' ? 'right-0' : 'left-0'
-			} mt-5 border-2 border-t-4 border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900 ${
+			} mt-5 border-2 border-t-4 border-gray-300 bg-white dark:border-gray-700 dark:bg-gray-900 ${
 				classes ? classes : ''
 			}`}
 		>

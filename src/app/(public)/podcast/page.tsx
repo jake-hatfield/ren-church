@@ -1,13 +1,13 @@
 'use client';
 
-const IntroPage: React.FC = () => {
+const PodcastPage: React.FC = () => {
 	return (
 		<section className='content-section mt-content mb-content'>
 			<header>
-				<h1 className='headline-primary'>Intro</h1>
+				<h1 className='headline-primary'>Podcast</h1>
 			</header>
 		</section>
 	);
 };
 
-export default IntroPage;
+export default PodcastPage;

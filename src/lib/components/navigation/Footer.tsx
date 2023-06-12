@@ -1,27 +1,25 @@
-// components
-import Button from '@components/utilities/Button';
-import Link from '@components/utilities/Link';
-import Logo from '@assets/images/vectors/Logo';
+// react
+import { useState } from 'react';
 
-// icons
-import {
-	LogoFacebook,
-	LogoInstagram,
-	LogoTwitter,
-	LogoYoutube,
-} from '@carbon/icons-react';
+// components
+import Input from '@components/utilities/Input';
+import Link from '@components/utilities/Link';
+import Socials from '@components/navigation/Socials';
+
+// assets
+import Logo from '@assets/images/vectors/Logo';
 
 // lib
 import metadata from '@lib/metadata';
+import placeholders from '@lib/metadata/placeholders';
 
 // types
-import type { Link as LinkType, LinkWithIcon } from 'src/@types/Link';
+import type { Link as LinkType } from 'src/@types/Link';
 
 const Footer = () => {
-	// destructure
-	const { address, social } = metadata;
-
 	// state
+	const [email, setEmail] = useState('');
+
 	const categoryOneLinks: LinkType[] = [
 		{
 			href: '/service',
@@ -43,11 +41,11 @@ const Footer = () => {
 			title: 'Podcast',
 		},
 		{
-			href: '/greenhouse',
+			href: '/resources/leadership-training',
 			title: 'Leadership Training',
 		},
 		{
-			href: '/framework-journal',
+			href: '/resources/mens-study',
 			title: "Men's Study",
 		},
 	];
@@ -70,50 +68,33 @@ const Footer = () => {
 		{ href: '/sitemap.xml', title: 'Sitemap' },
 		{ href: '/rss.xml', title: 'RSS' },
 	];
-	const socialLinks: LinkWithIcon[] = [
-		{
-			href: social.facebook,
-			icon: <LogoFacebook />,
-			title: 'Facebook',
-		},
-		{
-			href: social.instagram,
-			icon: <LogoInstagram />,
-			title: 'Instagram',
-		},
-		{
-			href: social.youtube,
-			icon: <LogoYoutube />,
-			title: 'YouTube',
-		},
-	];
 
 	return (
 		<footer
 			aria-label='footer'
-			className='mt-auto w-full border-t-2 border-neutral-200 dark:border-neutral-700 dark:bg-neutral-900'
+			className='mt-auto w-full border-t-2 border-rose-900 dark:border-gray-700 dark:bg-gray-900'
 		>
 			<div className='pt-content pb-content mx-auto max-w-7xl px-3 md:px-5'>
 				<div className='md:grid md:grid-cols-5 md:gap-1.5 lg:gap-5'>
-					<div className='md:col-span-2'>
+					<div>
 						<a
 							aria-label='Home'
 							href='/'
-							className='inline-block focus:ring-neutral-900 focus:dark:ring-white'
+							className='inline-block focus:ring-gray-900 focus:dark:ring-white'
 						>
 							<Logo />
 						</a>
-
 						<address className='mt-1.5 max-w-md'>
-							{address.line1}
+							{metadata.address.line1}
 							<br />
-							{address.line2}
+							{metadata.address.line2}
 						</address>
+						<Link href={`mailto:${metadata.email}`} title={metadata.email} />
 					</div>
 					<div className='mt-8 md:mt-0'>
-						<p className='headline-tertiary text-sm text-neutral-600 dark:text-neutral-400'>
+						<h4 className='headline-tertiary text-sm text-gray-600 dark:text-gray-400'>
 							Connect
-						</p>
+						</h4>
 						<nav>
 							<ul className='mt-3 space-y-3'>
 								{categoryOneLinks.map(({ href, title }, i) => (
@@ -125,35 +106,48 @@ const Footer = () => {
 						</nav>
 					</div>
 					<div className='mt-8 md:mt-0'>
-						<p className='headline-tertiary text-sm text-neutral-600 dark:text-neutral-400'>
+						<h4 className='headline-tertiary text-sm text-gray-600 dark:text-gray-400'>
 							Resources
-						</p>
+						</h4>
 						<nav>
 							<ul className='mt-3 space-y-3'>
 								{categoryTwoLinks.map(({ href, title }, i) => (
 									<li className='flex items-start' key={i}>
-										<Link href={`/resources${href}`} title={title} />
+										<Link href={href} title={title} />
 									</li>
 								))}
 							</ul>
 						</nav>
 					</div>
 					<div className='mt-8 md:mt-0'>
-						<p className='headline-tertiary text-sm text-neutral-600 dark:text-neutral-400'>
+						<h4 className='headline-tertiary text-sm text-gray-600 dark:text-gray-400'>
 							About
-						</p>
+						</h4>
 						<nav>
 							<ul className='mt-3 space-y-3'>
 								{categoryThreeLinks.map(({ href, title }, i) => (
 									<li className='flex items-start' key={i}>
-										<Link href={`/resources${href}`} title={title} />
+										<Link href={href} title={title} />
 									</li>
 								))}
 							</ul>
 						</nav>
 					</div>
+					<div className='mt-8 md:mt-0'>
+						<h4 className='headline-tertiary text-sm text-gray-600 dark:text-gray-400'>
+							Connect
+						</h4>
+						<Input
+							classes='mt-3'
+							defaultType='text'
+							id='footer-email'
+							placeholder={placeholders.email}
+							setValue={setEmail}
+							value={email}
+						/>
+					</div>
 				</div>
-				<div className='mt-content border-t-2 border-neutral-200 pt-5 dark:border-neutral-700 md:flex md:items-end md:justify-between'>
+				<div className='mt-content border-t-2 border-rose-900 pt-5 dark:border-gray-700 md:flex md:items-end md:justify-between'>
 					<div className='flex items-end'>
 						<p>
 							&copy; {new Date().getFullYear()} {metadata.siteTitle}. All rights
@@ -169,21 +163,7 @@ const Footer = () => {
 							</ul>
 						</nav>
 					</div>
-					<ul className='flex items-center'>
-						{socialLinks.map(({ href, icon, title }, i) => (
-							<li className='ml-0.5 first:ml-0' key={i}>
-								<Button
-									href={href}
-									icon={icon}
-									kind='ghost'
-									title={title}
-									type='icon'
-									tooltipAlignment={i === 0 ? 'start' : 'center'}
-									tooltipPosition='top'
-								/>
-							</li>
-						))}
-					</ul>
+					<Socials tooltipPosition='top' />
 				</div>
 			</div>
 		</footer>
